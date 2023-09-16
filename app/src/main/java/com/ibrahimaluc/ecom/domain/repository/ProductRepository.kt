@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface ProductRepository {
     suspend fun getAllProducts(): Flow<Resource<ProductHome>>
 
-    suspend fun getSearchResults(): Flow<Resource<ProductSearch>>
+    suspend fun getSearchResults(search_query:String): Flow<Resource<ProductSearch>>
 }

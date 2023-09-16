@@ -1,4 +1,4 @@
-package com.ibrahimaluc.ecom.ui.screen.search
+package com.ibrahimaluc.ecom.ui.screen.home
 
 import androidx.lifecycle.viewModelScope
 import com.ibrahimaluc.ecom.core.base.BaseViewModel
@@ -12,9 +12,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.util.ArrayList
+import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel(
+class SearchViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : BaseViewModel() {
 
@@ -22,10 +23,10 @@ class SearchViewModel(
         MutableStateFlow(SearchUiState(isLoading = false))
     val state: StateFlow<SearchUiState> get() = _state
 
-    fun getSearchResults() {
+    fun getSearchResults(search_query:String) {
         job = viewModelScope.launch {
             job = viewModelScope.launch {
-                productRepository.getSearchResults().onEach { result ->
+                productRepository.getSearchResults(search_query).onEach { result ->
                     when (result) {
                         is Resource.Success -> {
                             _state.value = SearchUiState(

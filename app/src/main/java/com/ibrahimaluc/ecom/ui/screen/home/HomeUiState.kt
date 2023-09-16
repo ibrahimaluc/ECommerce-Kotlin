@@ -6,6 +6,6 @@ import java.util.ArrayList
 
 data class HomeUiState(
     val productList: ArrayList<Product>? = arrayListOf(),
-    val isLoading: Boolean? = true
+    val isLoading: Boolean
 
 )

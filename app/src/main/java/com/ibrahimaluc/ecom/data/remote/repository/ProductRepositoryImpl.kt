@@ -29,10 +29,10 @@ class ProductRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSearchResults(): Flow<Resource<ProductSearch>> = flow {
+    override suspend fun getSearchResults(search_query : String): Flow<Resource<ProductSearch>> = flow {
         emit(Resource.Loading())
         try {
-            val response = api.getSearchResults()
+            val response = api.getSearchResults(search_query)
             emit(Resource.Success(response))
         } catch (e: HttpException) {
             emit(Resource.Error(message = "Http Error!"))

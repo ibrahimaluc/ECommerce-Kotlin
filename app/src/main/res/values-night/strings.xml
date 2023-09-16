@@ -3,4 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_cart">Cart</string>
+    <string name="search">search product</string>
 </resources>
