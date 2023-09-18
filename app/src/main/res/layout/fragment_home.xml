@@ -8,7 +8,8 @@
 
         <variable
             name="searchControl"
-            type="Boolean" />
+            type="Boolean"
+            android:value="false" />
 
         <import type="android.view.View" />
     </data>
@@ -44,7 +45,7 @@
             android:id="@+id/searchRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{searchControl ? View.GONE : View.VISIBLE}"
+            android:visibility="@{searchControl ? View.VISIBLE : View.GONE}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/item_search" />
 
@@ -52,7 +53,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{searchControl ? View.VISIBLE : View.GONE}"
+            android:visibility="@{searchControl ? View.GONE : View.VISIBLE}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/item_home" />
 

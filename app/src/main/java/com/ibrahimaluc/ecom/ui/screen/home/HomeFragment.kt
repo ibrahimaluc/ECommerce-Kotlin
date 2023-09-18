@@ -3,9 +3,13 @@ package com.ibrahimaluc.ecom.ui.screen.home
 
 import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
+import com.ibrahimaluc.ecom.core.extensions.hideKeyboard
+import com.ibrahimaluc.ecom.core.extensions.showKeyboard
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
 import com.ibrahimaluc.ecom.domain.model.productHome.Product
 import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
@@ -26,6 +30,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
     private var searchList: ArrayList<SearchResult> = arrayListOf()
     private var searchAdapter: SearchAdapter? = null
     private var homeAdapter: HomeAdapter? = null
+
     override fun onCreateViewInvoke() {
 
         val searchView = binding.searchView
@@ -43,13 +48,20 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
     override fun onQueryTextSubmit(searchQuery: String?): Boolean {
         if (!searchQuery.isNullOrBlank()) {
             viewModel.getSearchResults(searchQuery)
+            binding.searchControl = true
+            hideKeyboard()
         }
         return true
     }
 
-    override fun onQueryTextChange(searchQuery: String?): Boolean {
-        if (!searchQuery.isNullOrBlank()) {
-            viewModel.getSearchResults(searchQuery)
+    override fun onQueryTextChange(newQuery: String?): Boolean {
+        if (!newQuery.isNullOrBlank()) {
+            viewModel.getSearchResults(newQuery)
+            binding.searchControl = true
+        } else {
+
+            binding.searchControl = false
+            hideKeyboard()
         }
         return true
     }
@@ -73,7 +85,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 
     private fun homeAdapter() = with(binding) {
         homeAdapter = HomeAdapter(::navigateToDetail)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = homeAdapter
 
     }
@@ -89,9 +101,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
         findNavController().navigate(action)
     }
-    private fun  inItClickListener()=with(binding){
-        searchView.setOnClickListener {
-            binding.searchControl=false
+
+    private fun inItClickListener() = with(binding) {
+
+        searchView.setOnCloseListener {
+            hideKeyboard()
+            searchView.setQuery("", false)
+            false
         }
     }
 

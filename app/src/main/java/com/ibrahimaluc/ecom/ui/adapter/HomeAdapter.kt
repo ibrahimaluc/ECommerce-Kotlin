@@ -26,7 +26,7 @@ class HomeAdapter(private val clickControl: (Int) -> Unit) :
         get() = listDiffer.currentList
         set(value) = listDiffer.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.HomeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
             ItemHomeBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -36,7 +36,7 @@ class HomeAdapter(private val clickControl: (Int) -> Unit) :
         )
     }
 
-    override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.binding.data = productList[position]
         holder.binding.productCard.setOnClickListener {
             productList[position].id?.let { productId -> clickControl(productId) }
