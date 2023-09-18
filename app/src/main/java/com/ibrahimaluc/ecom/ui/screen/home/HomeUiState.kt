@@ -1,11 +1,11 @@
 package com.ibrahimaluc.ecom.ui.screen.home
 
 import com.ibrahimaluc.ecom.domain.model.productHome.Product
-import java.util.ArrayList
-
+import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
 
 data class HomeUiState(
-    val productList: ArrayList<Product>? = arrayListOf(),
+    val productList:List<Product>? = arrayListOf(),
+    val searchList: List<SearchResult>? = arrayListOf(),
     val isLoading: Boolean
 
 )

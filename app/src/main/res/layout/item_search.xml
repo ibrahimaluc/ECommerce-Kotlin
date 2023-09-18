@@ -11,6 +11,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/productCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -28,9 +29,9 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Örnek Metin"
+                android:text="@{data.name}"
                 android:textSize="16sp"
-                tools:text="Örnek Metin" />
+                tools:text="@string/product_name" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

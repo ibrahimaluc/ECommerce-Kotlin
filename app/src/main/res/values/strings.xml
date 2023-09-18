@@ -6,4 +6,8 @@
     <string name="title_favorite">Favorite</string>
     <string name="title_cart">Cart</string>
     <string name="search">search product</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="icon_like">Icon like</string>
+    <string name="product_image">Product Image</string>
 </resources>

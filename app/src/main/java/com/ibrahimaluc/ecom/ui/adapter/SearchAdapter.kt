@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ibrahimaluc.ecom.databinding.ItemSearchBinding
 import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
 
-class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+class SearchAdapter(private val clickControl: (Int) -> Unit) :
+    RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+
     class SearchViewHolder(var binding: ItemSearchBinding) : ViewHolder(binding.root)
 
     private val diffCallBack = object : DiffUtil.ItemCallback<SearchResult>() {
@@ -34,6 +36,9 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.binding.data = searchList[position]
+        holder.binding.productCard.setOnClickListener {
+            searchList[position].id?.let { productId -> clickControl(productId) }
+        }
     }
 
     override fun getItemCount(): Int {
