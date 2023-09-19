@@ -51,7 +51,6 @@ class HomeAdapter(private val clickControl: (Int) -> Unit) :
         }
         holder.binding.ivLikeButton.setOnClickListener {
             addFavorite(holder.itemView.context, product, holder)
-            //Toast.makeText(holder.itemView.context, "dwadwa", Toast.LENGTH_SHORT).show()
         }
 
     }

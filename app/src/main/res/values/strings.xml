@@ -10,4 +10,7 @@
     <string name="product_price">Product Price</string>
     <string name="icon_like">Icon like</string>
     <string name="product_image">Product Image</string>
+    <string name="recycler_view_description">"Favorite Products "</string>
+    <string name="title_favorite_products">Favorite Products</string>
+    <string name="empty_favorite_message">You haven\'t added a favorite product yet</string>
 </resources>
