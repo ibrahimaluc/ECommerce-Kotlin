@@ -6,8 +6,9 @@ import androidx.navigation.fragment.navArgs
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.databinding.FragmentDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     DetailViewModel::class.java,
     FragmentDetailBinding::inflate

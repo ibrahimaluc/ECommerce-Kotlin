@@ -5,11 +5,9 @@ import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.hideKeyboard
-import com.ibrahimaluc.ecom.core.extensions.showKeyboard
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
 import com.ibrahimaluc.ecom.domain.model.productHome.Product
 import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
