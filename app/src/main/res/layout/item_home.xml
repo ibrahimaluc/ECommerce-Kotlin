@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.ibrahimaluc.ecom.domain.model.productHome.Product" />
@@ -24,15 +25,16 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/textView"
+                android:id="@+id/iv_like_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_gravity="center_horizontal|end"
                 android:contentDescription="@string/icon_like"
-                tools:src="@drawable/icon_favorite_border" />
+                android:padding="@dimen/dp_8"
+                android:src="@drawable/icon_favorite_border" />
 
             <ImageView
-                android:id="@+id/productImage"
+                android:id="@+id/iv_product_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -43,7 +45,7 @@
                 android:src="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/productName"
+                android:id="@+id/tv_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
@@ -51,7 +53,7 @@
                 android:textSize="@dimen/sp_16" />
 
             <TextView
-                android:id="@+id/productPrice"
+                android:id="@+id/tv_product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"

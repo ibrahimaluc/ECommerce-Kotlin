@@ -108,7 +108,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
             false
         }
     }
-
 }
 
 
