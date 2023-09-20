@@ -1,6 +1,7 @@
 package com.ibrahimaluc.ecom.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -14,4 +15,7 @@ interface FavoriteDao {
 
     @Query("SELECT * FROM favorite WHERE id=:id")
     suspend fun getFavoriteEntityById(id: Int?): FavoriteEntity?
+
+    @Delete
+    suspend fun delete(favorite: FavoriteEntity)
 }

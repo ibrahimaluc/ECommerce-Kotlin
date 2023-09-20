@@ -9,6 +9,7 @@ data class FavoriteEntity(
     val id: Int?,
     val name: String?,
     val price: Double?,
-    val images: String?
+    val images: String?,
+    var isFavorited: Boolean = false,
 
 )

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.data.local.FavoriteDatabase
 import com.ibrahimaluc.ecom.data.local.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemHomeBinding
@@ -16,7 +17,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeAdapter(private val clickControl: (Int) -> Unit) :
+class HomeAdapter(
+    private val clickControl: (Int) -> Unit,
+    private val favoriteClickListener: (Int, Boolean) -> Unit
+) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     class HomeViewHolder(var binding: ItemHomeBinding) : ViewHolder(binding.root)
 
@@ -33,6 +37,7 @@ class HomeAdapter(private val clickControl: (Int) -> Unit) :
         get() = listDiffer.currentList
         set(value) = listDiffer.submitList(value)
 
+    private val favoriteStatusMap = HashMap<Int?, Boolean>().withDefault { false }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
             ItemHomeBinding.inflate(
@@ -45,53 +50,69 @@ class HomeAdapter(private val clickControl: (Int) -> Unit) :
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val product = productList[position]
+        val isFavorited = favoriteStatusMap[product.id] ?: false
         holder.binding.data = product
         holder.binding.productCard.setOnClickListener {
             product.id?.let { productId -> clickControl(productId) }
         }
         holder.binding.ivLikeButton.setOnClickListener {
-            addFavorite(holder.itemView.context, product, holder)
+            val newFavoriteStatus = !isFavorited
+            favoriteClickListener(product.id ?: 0, newFavoriteStatus)
+            toggleFavorite(holder.itemView.context, product, holder, newFavoriteStatus)
         }
-
+        holder.binding.ivLikeButton.setImageResource(
+            if (isFavorited) R.drawable.icon_favorite_filled
+            else R.drawable.icon_favorite_border
+        )
     }
-
 
     override fun getItemCount(): Int {
         return productList.size
     }
 
-    private fun addFavorite(context: Context, product: Product, holder: HomeViewHolder) {
+    private fun toggleFavorite(
+        context: Context,
+        product: Product,
+        holder: HomeViewHolder,
+        newFavoriteStatus: Boolean
+    ) {
 
         val favoriteEntity = FavoriteEntity(
             id = product.id,
             name = product.name,
             price = product.price,
-            images = product.images
+            images = product.images,
+            isFavorited = newFavoriteStatus
         )
         val favoriteDao =
             FavoriteDatabase.getInstance(context).favoriteDao()
         CoroutineScope(Dispatchers.IO).launch {
             val existingEntity = favoriteDao.getFavoriteEntityById(favoriteEntity.id)
             if (existingEntity == null) {
+                favoriteEntity.isFavorited = true
                 favoriteDao.insert(favoriteEntity)
+                favoriteStatusMap[product.id] = true
+                holder.binding.ivLikeButton.setImageResource(R.drawable.icon_favorite_filled)
                 holder.itemView.post {
                     Toast.makeText(
                         context,
-                        "Favori olarak eklendi",
+                        "Added to your favorites.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             } else {
+                favoriteEntity.isFavorited = false
+                favoriteDao.delete(existingEntity)
+                favoriteStatusMap[product.id] = false
+                holder.binding.ivLikeButton.setImageResource(R.drawable.icon_favorite_border)
                 holder.itemView.post {
                     Toast.makeText(
                         context,
-                        "zaten.",
+                        "Deleted from your favorites.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
         }
     }
-
-
 }
