@@ -25,12 +25,10 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(HomeUiState(isLoading = false))
     val searchState: StateFlow<HomeUiState> get() = _searchState
 
-    private val favoriteStatusMap = mutableMapOf<Int, Boolean>()
-
-
     init {
         getAllProducts()
     }
+
     private fun getAllProducts() {
         job = viewModelScope.launch {
             productRepository.getAllProducts().onEach { result ->
@@ -86,9 +84,6 @@ class HomeViewModel @Inject constructor(
             }
 
         }
-    }
-    fun updateFavoriteStatus(productId: Int, isFavorited: Boolean) {
-        favoriteStatusMap[productId] = isFavorited
     }
 
 }

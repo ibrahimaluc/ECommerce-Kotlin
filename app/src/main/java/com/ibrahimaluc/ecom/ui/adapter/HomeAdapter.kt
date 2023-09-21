@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 
 class HomeAdapter(
     private val clickControl: (Int) -> Unit,
-    private val favoriteClickListener: (Int, Boolean) -> Unit
-) :
+
+    ) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     class HomeViewHolder(var binding: ItemHomeBinding) : ViewHolder(binding.root)
 
@@ -37,7 +37,6 @@ class HomeAdapter(
         get() = listDiffer.currentList
         set(value) = listDiffer.submitList(value)
 
-    private val favoriteStatusMap = HashMap<Int?, Boolean>().withDefault { false }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
             ItemHomeBinding.inflate(
@@ -50,20 +49,14 @@ class HomeAdapter(
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val product = productList[position]
-        val isFavorited = favoriteStatusMap[product.id] ?: false
         holder.binding.data = product
         holder.binding.productCard.setOnClickListener {
             product.id?.let { productId -> clickControl(productId) }
         }
         holder.binding.ivLikeButton.setOnClickListener {
-            val newFavoriteStatus = !isFavorited
-            favoriteClickListener(product.id ?: 0, newFavoriteStatus)
-            toggleFavorite(holder.itemView.context, product, holder, newFavoriteStatus)
+            toggleFavorite(holder.itemView.context, product, holder)
         }
-        holder.binding.ivLikeButton.setImageResource(
-            if (isFavorited) R.drawable.icon_favorite_filled
-            else R.drawable.icon_favorite_border
-        )
+
     }
 
     override fun getItemCount(): Int {
@@ -74,24 +67,22 @@ class HomeAdapter(
         context: Context,
         product: Product,
         holder: HomeViewHolder,
-        newFavoriteStatus: Boolean
-    ) {
+
+        ) {
 
         val favoriteEntity = FavoriteEntity(
             id = product.id,
             name = product.name,
             price = product.price,
             images = product.images,
-            isFavorited = newFavoriteStatus
-        )
+
+            )
         val favoriteDao =
             FavoriteDatabase.getInstance(context).favoriteDao()
         CoroutineScope(Dispatchers.IO).launch {
             val existingEntity = favoriteDao.getFavoriteEntityById(favoriteEntity.id)
             if (existingEntity == null) {
-                favoriteEntity.isFavorited = true
                 favoriteDao.insert(favoriteEntity)
-                favoriteStatusMap[product.id] = true
                 holder.binding.ivLikeButton.setImageResource(R.drawable.icon_favorite_filled)
                 holder.itemView.post {
                     Toast.makeText(
@@ -101,9 +92,7 @@ class HomeAdapter(
                     ).show()
                 }
             } else {
-                favoriteEntity.isFavorited = false
                 favoriteDao.delete(existingEntity)
-                favoriteStatusMap[product.id] = false
                 holder.binding.ivLikeButton.setImageResource(R.drawable.icon_favorite_border)
                 holder.itemView.post {
                     Toast.makeText(

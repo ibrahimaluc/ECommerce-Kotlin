@@ -10,6 +10,5 @@ data class FavoriteEntity(
     val name: String?,
     val price: Double?,
     val images: String?,
-    var isFavorited: Boolean = false,
 
 )

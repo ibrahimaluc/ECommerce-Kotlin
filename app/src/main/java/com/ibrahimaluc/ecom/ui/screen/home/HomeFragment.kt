@@ -41,8 +41,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         searchAdapter()
         inItClickListener()
 
-
-
     }
 
     override fun onQueryTextSubmit(searchQuery: String?): Boolean {
@@ -84,9 +82,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
     }
 
     private fun homeAdapter() = with(binding) {
-        homeAdapter = HomeAdapter(::navigateToDetail) { productId, isFavorited ->
-            viewModel.updateFavoriteStatus(productId, isFavorited)
-        }
+        homeAdapter = HomeAdapter(::navigateToDetail)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = homeAdapter
 
