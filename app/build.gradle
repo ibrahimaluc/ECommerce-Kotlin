@@ -73,8 +73,15 @@ dependencies {
     //SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-    //roomdb
+    //Roomdb
     implementation 'androidx.room:room-ktx:2.4.0'
     kapt 'androidx.room:room-compiler:2.4.0'
+
+    //ViewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+
+
+
 
 }

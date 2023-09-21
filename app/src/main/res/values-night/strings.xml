@@ -12,4 +12,5 @@
     <string name="title_favorite_products">Favorite Products</string>
     <string name="empty_favorite_icon">You haven\'t added a favorite product yet</string>
     <string name="empty_favorite_message">You haven\'t added a favorite product yet</string>
+    <string name="placeholder_item_carousel">Carousel item placeholder</string>
 </resources>

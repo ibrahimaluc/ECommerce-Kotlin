@@ -15,7 +15,7 @@ data class ProductDetailAll(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("images")
-    val images: List<String>?,
+    var images: List<String>?,
     @SerializedName("name")
     val name: String?,
     @SerializedName("price")
