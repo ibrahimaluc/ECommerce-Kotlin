@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ECom</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_home">Home</string>
     <string name="title_favorite">Favorite</string>
@@ -16,4 +16,14 @@
     <string name="placeholder_item_carousel">Carousel item placeholder</string>
     <string name="add_to_basket">Add to basket.</string>
     <string name="complete_the_order">Complete the order.</string>
+    <string name="items">Items:</string>
+    <string name="shipping">Shipping:</string>
+    <string name="tax">Tax:</string>
+    <string name="total">Total:</string>
+    <string name="seller">Seller</string>
+    <string name="product_size">Size:L</string>
+    <string name="quantity">1</string>
+    <string name="trash_basket_description">Trash basket button</string>
+    <string name="minus_description">"Minus button "</string>
+    <string name="plus_description">Plus button</string>
 </resources>
