@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.FavoriteDatabase
-import com.ibrahimaluc.ecom.data.local.FavoriteEntity
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemHomeBinding
 import com.ibrahimaluc.ecom.domain.model.productHome.Product
 import kotlinx.coroutines.CoroutineScope

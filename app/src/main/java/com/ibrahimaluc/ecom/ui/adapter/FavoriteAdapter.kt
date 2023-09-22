@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.FavoriteEntity
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemFavoriteBinding
 
 class FavoriteAdapter(

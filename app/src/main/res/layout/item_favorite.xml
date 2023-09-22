@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.ibrahimaluc.ecom.data.local.FavoriteEntity" />
+            type="com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity" />
     </data>
 
     <androidx.cardview.widget.CardView

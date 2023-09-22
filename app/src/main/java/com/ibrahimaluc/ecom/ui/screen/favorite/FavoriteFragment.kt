@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.FavoriteDatabase
-import com.ibrahimaluc.ecom.data.local.FavoriteEntity
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentFavoriteBinding
 import com.ibrahimaluc.ecom.ui.adapter.FavoriteAdapter
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.ibrahimaluc.ecom.data.local
+package com.ibrahimaluc.ecom.data.local.favorite
 
 import android.content.Context
 import androidx.room.Database

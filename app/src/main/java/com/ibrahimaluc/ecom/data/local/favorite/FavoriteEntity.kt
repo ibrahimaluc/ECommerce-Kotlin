@@ -1,4 +1,4 @@
-package com.ibrahimaluc.ecom.data.local
+package com.ibrahimaluc.ecom.data.local.favorite
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
