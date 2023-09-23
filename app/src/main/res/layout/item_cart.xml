@@ -67,9 +67,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_4"
-                android:text="@string/product_price"
+                android:text='@{"₺" + data.price.toString()}'
                 app:layout_constraintStart_toStartOf="@id/tv_size"
-                app:layout_constraintTop_toBottomOf="@id/tv_size" />
+                app:layout_constraintTop_toBottomOf="@id/tv_size"
+                tools:text="@string/product_price" />
 
             <ImageButton
                 android:id="@+id/ib_trash"
@@ -96,12 +97,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_4"
-                android:text="@string/quantity"
+                android:text="@{Integer.toString(data.quantity)}"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintBottom_toBottomOf="@+id/ib_minus"
                 app:layout_constraintEnd_toStartOf="@id/ib_plus"
                 app:layout_constraintTop_toTopOf="@+id/ib_minus"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="@string/quantity" />
 
             <ImageButton
                 android:id="@+id/ib_plus"

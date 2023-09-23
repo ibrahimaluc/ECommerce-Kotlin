@@ -20,7 +20,6 @@ class CartFragment : Fragment() {
     private var cartAdapter: CartAdapter? = null
     private var cartList: ArrayList<CartEntity> = arrayListOf()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,19 +62,62 @@ class CartFragment : Fragment() {
         )
         binding.cL.addView(emptyListView)
         binding.rvCartList.visibility = View.GONE
+        binding.llCart.visibility = View.GONE
+        binding.btCart.visibility = View.GONE
     }
 
     private fun hideEmptyListView() {
         val emptyListView = binding.cL.findViewById<View>(R.id.emptyListView)
         binding.cL.removeView(emptyListView)
         binding.rvCartList.visibility = View.VISIBLE
+        binding.llCart.visibility = View.VISIBLE
+        binding.btCart.visibility = View.VISIBLE
     }
 
     private fun showCartProducts() {
-        cartAdapter = CartAdapter(cartList)
-        println(cartList)
+        cartAdapter = CartAdapter(cartList, ::deleteToCart, ::minus, ::plus)
         binding.rvCartList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCartList.adapter = cartAdapter
     }
 
+    private fun deleteToCart(position: Int) {
+        val deletedCartEntity = cartList[position]
+        val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
+        lifecycleScope.launch {
+            cartDao.delete(deletedCartEntity)
+            cartList.removeAt(position)
+            cartAdapter?.notifyItemRemoved(position)
+
+            if (cartList.isEmpty()) {
+                showEmptyListView()
+            }
+        }
+
+    }
+
+    private fun plusOrMinus(position: Int, change: Int) {
+        val cartItem = cartList[position]
+        val newQuantity = cartItem.quantity + change
+
+        if (newQuantity >= 1) {
+            cartItem.quantity = newQuantity
+            updateCartItem(position, cartItem)
+        }
+    }
+
+    private fun updateCartItem(position: Int, cartItem: CartEntity) {
+        cartAdapter?.notifyItemChanged(position)
+        val viewHolder = binding.rvCartList.findViewHolderForAdapterPosition(position)
+        if (viewHolder is CartAdapter.CartViewHolder) {
+            viewHolder.binding.quantity.text = cartItem.quantity.toString()
+        }
+    }
+
+    private fun plus(position: Int) {
+        plusOrMinus(position, 1)
+    }
+
+    private fun minus(position: Int) {
+        plusOrMinus(position, -1)
+    }
 }
