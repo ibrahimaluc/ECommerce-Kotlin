@@ -24,6 +24,6 @@
     <string name="trash_basket_description">Trash basket button</string>
     <string name="minus_description">"Minus button "</string>
     <string name="plus_description">Plus button</string>
-    <string name="star">Start icon</string>
+    <string name="star">Star icon</string>
     <string name="star_point">4.5</string>
 </resources>
