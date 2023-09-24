@@ -72,12 +72,14 @@ class CartFragment : Fragment() {
         binding.rvCartList.visibility = View.VISIBLE
         binding.llCart.visibility = View.VISIBLE
         binding.btCart.visibility = View.VISIBLE
+
     }
 
     private fun showCartProducts() {
         cartAdapter = CartAdapter(cartList, ::deleteToCart, ::minus, ::plus)
         binding.rvCartList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCartList.adapter = cartAdapter
+        calculateCost()
     }
 
     private fun deleteToCart(position: Int) {
@@ -91,6 +93,7 @@ class CartFragment : Fragment() {
             if (cartList.isEmpty()) {
                 showEmptyListView()
             }
+            calculateCost()
         }
 
     }
@@ -111,6 +114,7 @@ class CartFragment : Fragment() {
         if (viewHolder is CartAdapter.CartViewHolder) {
             viewHolder.binding.quantity.text = cartItem.quantity.toString()
         }
+        calculateCost()
     }
 
     private fun plus(position: Int) {
@@ -119,5 +123,24 @@ class CartFragment : Fragment() {
 
     private fun minus(position: Int) {
         plusOrMinus(position, -1)
+    }
+
+    private fun calculateCost() {
+        var totalPrice = 0.0
+        for (cartItem in cartList) {
+            totalPrice += (cartItem.price ?: 0.0) * cartItem.quantity
+        }
+        val shippingCost = if (totalPrice >= 200.0) {
+            0.0
+        } else {
+            39.9
+        }
+        val tax = totalPrice * 0.20
+        val grandTotal = totalPrice + shippingCost + tax
+
+        binding.tvItemsValue.text = String.format("₺ %.2f", totalPrice)
+        binding.tvShippingValue.text = String.format("₺ %.2f", shippingCost)
+        binding.tvTaxValue.text = String.format("₺ %.2f", tax)
+        binding.tvTotalValue.text = String.format("₺ %.2f", grandTotal)
     }
 }

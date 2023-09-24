@@ -4,4 +4,25 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <!--search-->
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:fontFamily">@font/inter_light</item>
+        <item name="android:layout_marginStart">@dimen/dp_4</item>
+    </style>
+
+    <!--toolbar-->
+    <style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">4dp</item>
+        <item name="titleTextAppearance">@style/MyToolbarTitleText</item>
+
+    </style>
+
+    <style name="MyToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
 </resources>

@@ -18,25 +18,25 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_primary">
+        android:layout_margin="@dimen/dp_8">
 
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_8">
 
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_16"
+                android:layout_height="match_parent"
                 android:background="@drawable/search_view_background"
-                android:elevation="@dimen/dp_6"
                 app:iconifiedByDefault="false"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:queryHint="@string/search"
-                app:searchIcon="@drawable/icon_search" />
+                app:searchIcon="@drawable/icon_search"
+                app:theme="@style/SearchViewStyle" />
 
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -54,7 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="@{searchControl ? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:spanCount="2"
             tools:listitem="@layout/item_home" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

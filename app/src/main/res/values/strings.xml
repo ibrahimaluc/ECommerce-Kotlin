@@ -5,13 +5,13 @@
     <string name="title_home">Home</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_cart">Cart</string>
-    <string name="search">search product</string>
+    <string name="search">Search</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">Product Price</string>
     <string name="icon_like">Icon like</string>
     <string name="product_image">Product Image</string>
     <string name="recycler_view_description">"Favorite Products "</string>
-    <string name="title_favorite_products">Favorite Products</string>
+    <string name="title_favorite_products">Favorites</string>
     <string name="empty_favorite_message">You haven\'t added a favorite product yet</string>
     <string name="placeholder_item_carousel">Carousel item placeholder</string>
     <string name="add_to_basket">Add to basket.</string>
@@ -26,4 +26,6 @@
     <string name="trash_basket_description">Trash basket button</string>
     <string name="minus_description">"Minus button "</string>
     <string name="plus_description">Plus button</string>
+    <string name="star">Start icon</string>
+    <string name="star_point">4.5</string>
 </resources>

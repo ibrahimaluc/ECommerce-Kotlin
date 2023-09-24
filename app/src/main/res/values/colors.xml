@@ -6,4 +6,5 @@
     <color name="color_primary">#F4F6FB</color>
     <color name="color_gray">#D9D9D9</color>
     <color name="light_gray">#BABABA</color>
+    <color name="search_background">#F0F0F0</color>
 </resources>

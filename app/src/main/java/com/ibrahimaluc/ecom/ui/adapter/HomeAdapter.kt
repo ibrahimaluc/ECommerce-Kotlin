@@ -53,7 +53,7 @@ class HomeAdapter(
         holder.binding.productCard.setOnClickListener {
             product.id?.let { productId -> clickControl(productId) }
         }
-        holder.binding.ivLikeButton.setOnClickListener {
+        holder.binding.ibLike.setOnClickListener {
             toggleFavorite(holder.itemView.context, product, holder)
         }
 
@@ -83,7 +83,7 @@ class HomeAdapter(
             val existingEntity = favoriteDao.getFavoriteEntityById(favoriteEntity.id)
             if (existingEntity == null) {
                 favoriteDao.insert(favoriteEntity)
-                holder.binding.ivLikeButton.setImageResource(R.drawable.icon_favorite_filled)
+                holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_filled)
                 holder.itemView.post {
                     Toast.makeText(
                         context,
@@ -93,7 +93,7 @@ class HomeAdapter(
                 }
             } else {
                 favoriteDao.delete(existingEntity)
-                holder.binding.ivLikeButton.setImageResource(R.drawable.icon_favorite_border)
+                holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_border)
                 holder.itemView.post {
                     Toast.makeText(
                         context,

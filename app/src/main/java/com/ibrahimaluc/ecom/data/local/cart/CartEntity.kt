@@ -12,6 +12,5 @@ data class CartEntity(
     val images: String?,
     val seller: String?,
     val size: String?,
-    var quantity :Int =1,
-
-    )
+    var quantity: Int = 1,
+)
