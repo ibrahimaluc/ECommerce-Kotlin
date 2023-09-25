@@ -19,8 +19,7 @@ import kotlinx.coroutines.launch
 
 class HomeAdapter(
     private val clickControl: (Int) -> Unit,
-
-    ) :
+) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     class HomeViewHolder(var binding: ItemHomeBinding) : ViewHolder(binding.root)
 
@@ -56,7 +55,6 @@ class HomeAdapter(
         holder.binding.ibLike.setOnClickListener {
             toggleFavorite(holder.itemView.context, product, holder)
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -93,7 +91,7 @@ class HomeAdapter(
                 }
             } else {
                 favoriteDao.delete(existingEntity)
-                holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_border)
+                holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_passive)
                 holder.itemView.post {
                     Toast.makeText(
                         context,

@@ -41,11 +41,10 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_400"
+            android:layout_height="@dimen/dp_300"
             android:layout_margin="@dimen/dp_16"
             android:clipToPadding="false"
             android:overScrollMode="never"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -55,7 +54,7 @@
             android:id="@+id/ratingLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_2"
             android:layout_marginEnd="@dimen/dp_16"
             app:layout_constraintTop_toBottomOf="@id/viewPager">
 
@@ -109,40 +108,45 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/inter_medium"
-                android:text="@string/seller"
-                android:textSize="@dimen/sp_12" />
+                android:text="@{data.productDetail.seller}"
+                android:textSize="@dimen/sp_12"
+                tools:text="@string/seller" />
 
         </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_product_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_16"
             android:fontFamily="@font/inter_regular"
-            android:text="@string/product_name"
+            android:text="@{data.productDetail.name}"
             android:textSize="@dimen/sp_16"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ratingLayout" />
+            app:layout_constraintTop_toBottomOf="@id/ratingLayout"
+            tools:text="@string/product_name" />
 
         <TextView
             android:id="@+id/tv_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_1"
             android:fontFamily="@font/inter_semi_bold"
-            android:text="@string/product_price"
+            android:text="@{'₺' +data.productDetail.price.toString()}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="@id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            tools:text="@string/product_price" />
 
 
         <TextView
             android:id="@+id/tv_select_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_36"
+            android:layout_marginTop="@dimen/dp_16"
             android:fontFamily="@font/inter_regular"
             android:text="@string/select_size"
             android:textSize="@dimen/sp_16"
@@ -153,47 +157,50 @@
             android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_8"
             app:layout_constraintTop_toBottomOf="@id/tv_select_size">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_size_s"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_16"
+                style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/product_card_background"
                 android:text="@string/size_s" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_size_m"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_16"
+                style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/product_card_background"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_toEndOf="@id/btn_size_s"
                 android:text="@string/size_m" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_size_l"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_16"
+                style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/product_card_background"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_toEndOf="@id/btn_size_m"
                 android:text="@string/size_l" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_size_xl"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_16"
+                style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
-                android:background="@drawable/product_card_background"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_toEndOf="@id/btn_size_l"
                 android:text="@string/size_xl" />
         </RelativeLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_add_to_cart"
+            style="@style/CustomOrderButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:text="@string/add_to_cart"
+            app:layout_constraintTop_toBottomOf="@id/buttonLayout" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

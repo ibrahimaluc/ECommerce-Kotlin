@@ -2,9 +2,9 @@
     <string name="app_name">ECom</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_home">Home</string>
-    <string name="title_favorite">Favorite</string>
-    <string name="title_cart">Cart</string>
+    <string name="title_home">HOME</string>
+    <string name="title_favorite">FAVORITES</string>
+    <string name="title_cart">CART</string>
     <string name="search">Search</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">Product Price</string>
@@ -15,7 +15,7 @@
     <string name="empty_favorite_message">You haven\'t added a favorite product yet</string>
     <string name="placeholder_item_carousel">Carousel item placeholder</string>
     <string name="add_to_basket">Add to basket.</string>
-    <string name="complete_the_order">Complete the order.</string>
+    <string name="complete_the_order">Order Now</string>
     <string name="items">Items:</string>
     <string name="shipping">Shipping:</string>
     <string name="tax">Tax:</string>
@@ -36,4 +36,6 @@
     <string name="size_m">M</string>
     <string name="size_l">L</string>
     <string name="size_xl">XL</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="cart_value">₺ 0</string>
 </resources>

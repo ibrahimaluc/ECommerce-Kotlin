@@ -13,19 +13,19 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/MyToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/color_secondary"
-            android:elevation="@dimen/dp_4"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back_arrow"
-            app:title="@string/title_cart"
-            app:titleTextColor="@android:color/white" />
+            app:title="@string/title_cart" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nSV"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_0"
+            android:layout_height="@dimen/dp_350"
+            android:layout_margin="@dimen/dp_16"
             app:layout_constraintBottom_toTopOf="@id/ll_cart"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
@@ -42,9 +42,11 @@
             android:id="@+id/ll_cart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_36"
+            android:layout_marginEnd="@dimen/dp_16"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bt_cart"
             app:layout_constraintTop_toBottomOf="@id/nSV">
 
 
@@ -58,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/items" />
 
                 <TextView
@@ -66,15 +69,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_semi_bold"
                     android:gravity="end"
-                    android:text="400 $" />
+                    android:text="@string/cart_value" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#000000" />
+                android:layout_height="@dimen/dp_1"
+                android:layout_margin="@dimen/dp_4"
+                android:background="@color/light_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/shipping" />
 
                 <TextView
@@ -94,15 +99,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_semi_bold"
                     android:gravity="end"
-                    android:text="400 $" />
+                    android:text="@string/cart_value" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#000000" />
+                android:layout_height="@dimen/dp_1"
+                android:layout_margin="@dimen/dp_4"
+                android:background="@color/light_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,6 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/tax" />
 
                 <TextView
@@ -122,15 +129,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_semi_bold"
                     android:gravity="end"
-                    android:text="400 $" />
+                    android:text="@string/cart_value" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#000000" />
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_4"
+                android:background="@color/light_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,6 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:fontFamily="@font/inter_regular"
                     android:text="@string/total" />
 
                 <TextView
@@ -150,26 +159,27 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter_semi_bold"
                     android:gravity="end"
-                    android:text="400 $" />
+                    android:text="@string/cart_value"
+                    android:textSize="@dimen/sp_16" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#000000" />
-
+                android:layout_height="@dimen/dp_1"
+                android:layout_margin="@dimen/dp_4"
+                android:background="@color/light_gray" />
 
         </LinearLayout>
 
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_cart"
+            style="@style/CustomOrderButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16"
-            android:layout_marginBottom="?actionBarSize"
+            android:layout_margin="@dimen/dp_16"
             android:text="@string/complete_the_order"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_cart" />

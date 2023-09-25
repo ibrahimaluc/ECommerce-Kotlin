@@ -30,10 +30,9 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/search_view_background"
                 app:iconifiedByDefault="false"
-                app:layout_scrollFlags="scroll|enterAlways"
                 app:queryHint="@string/search"
                 app:searchIcon="@drawable/icon_search"
                 app:theme="@style/SearchViewStyle" />

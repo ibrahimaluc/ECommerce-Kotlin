@@ -40,7 +40,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         with(binding) {
             data = uiState.productDetail
             imageAdapter(data?.productDetail?.images)
-            //addBasket()
+            addBasket()
         }
     }
 
@@ -54,15 +54,15 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         }
     }
 
-    /*private fun addBasket() {
+    private fun addBasket() {
         val product = binding.data?.productDetail
-        binding.btAddToBasket.setOnClickListener {
+        binding.btAddToCart.setOnClickListener {
             val cartEntity = CartEntity(
-                id = product?.id ?: -1,
-                name = product?.name ?: "Unknown",
-                price = product?.price ?: 0.0,
-                images = product?.images?.get(0) ?: "No image",
-                seller = product?.seller ?: "Unknown Seller",
+                id = product?.id,
+                name = product?.name,
+                price = product?.price,
+                images = product?.images?.get(0),
+                seller = product?.seller,
                 size = "null"
             )
             val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
@@ -82,6 +82,6 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
                 }
             }
         }
-    }*/
+    }
 }
 
