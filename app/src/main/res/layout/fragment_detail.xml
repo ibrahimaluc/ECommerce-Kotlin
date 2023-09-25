@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
 
@@ -11,25 +12,188 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_view_background"
+                app:iconifiedByDefault="false"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:queryHint="@string/search"
+                app:searchIcon="@drawable/icon_search"
+                app:theme="@style/SearchViewStyle" />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="@dimen/dp_400"
+            android:layout_margin="@dimen/dp_16"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 
-        <Button
-            android:id="@+id/bt_add_to_basket"
+        <RelativeLayout
+            android:id="@+id/ratingLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_to_basket" />
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            app:layout_constraintTop_toBottomOf="@id/viewPager">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_star"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_16"
+                android:src="@drawable/icon_star" />
+
+            <TextView
+                android:id="@+id/tv_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_toEndOf="@id/iv_star"
+                android:fontFamily="@font/semi_bold"
+                android:text="@string/star_point"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tv_review_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_toEndOf="@id/tv_rating"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/review_value"
+                android:textColor="@color/light_gray"
+                android:textSize="@dimen/sp_8" />
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_4"
+                android:layout_toEndOf="@id/tv_review_value"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/reviews"
+                android:textSize="@dimen/sp_8" />
+
+            <TextView
+                android:id="@+id/tv_seller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/seller"
+                android:textSize="@dimen/sp_12" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/product_name"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ratingLayout" />
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="@string/product_price"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="@id/tv_product_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+
+
+        <TextView
+            android:id="@+id/tv_select_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_36"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/select_size"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="@id/tv_product_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_price" />
+
+        <RelativeLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            app:layout_constraintTop_toBottomOf="@id/tv_select_size">
+
+            <Button
+                android:id="@+id/btn_size_s"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_16"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/product_card_background"
+                android:text="@string/size_s" />
+
+            <Button
+                android:id="@+id/btn_size_m"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_16"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/product_card_background"
+                android:text="@string/size_m" />
+
+            <Button
+                android:id="@+id/btn_size_l"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_16"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/product_card_background"
+                android:text="@string/size_l" />
+
+            <Button
+                android:id="@+id/btn_size_xl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_16"
+                android:layout_centerVertical="true"
+                android:background="@drawable/product_card_background"
+                android:text="@string/size_xl" />
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

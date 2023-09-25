@@ -2,9 +2,11 @@ package com.ibrahimaluc.ecom.ui.screen.detail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.HorizontalScrollView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
@@ -21,7 +23,6 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     FragmentDetailBinding::inflate
 ) {
     private val args: DetailFragmentArgs by navArgs()
-    private lateinit var viewPager: ViewPager2
     private lateinit var adapter: ImagePagerAdapter
 
 
@@ -32,7 +33,6 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val productId = args.id.toString()
         viewModel.getAllDetail(productId)
-        viewPager = binding.viewPager
     }
 
     private fun handleDetailViewState(uiState: DetailUiState) {
@@ -40,18 +40,21 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         with(binding) {
             data = uiState.productDetail
             imageAdapter(data?.productDetail?.images)
-            addBasket()
+            //addBasket()
         }
     }
 
     private fun imageAdapter(images: List<String>?) {
         images?.let {
             adapter = ImagePagerAdapter(requireContext(), it)
-            viewPager.adapter = adapter
+            binding.viewPager.adapter = adapter
+            binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
         }
     }
 
-    private fun addBasket() {
+    /*private fun addBasket() {
         val product = binding.data?.productDetail
         binding.btAddToBasket.setOnClickListener {
             val cartEntity = CartEntity(
@@ -79,6 +82,6 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
                 }
             }
         }
-    }
+    }*/
 }
 

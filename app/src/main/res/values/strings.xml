@@ -28,4 +28,12 @@
     <string name="plus_description">Plus button</string>
     <string name="star">Star icon</string>
     <string name="star_point">4.5</string>
+    <string name="carousel_button">Carousel buton</string>
+    <string name="review_value">(150)</string>
+    <string name="reviews">Reviews</string>
+    <string name="select_size">Select Size</string>
+    <string name="size_s">S</string>
+    <string name="size_m">M</string>
+    <string name="size_l">L</string>
+    <string name="size_xl">XL</string>
 </resources>
