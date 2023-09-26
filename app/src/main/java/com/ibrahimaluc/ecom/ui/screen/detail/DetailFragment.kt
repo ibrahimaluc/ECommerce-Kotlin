@@ -2,11 +2,10 @@ package com.ibrahimaluc.ecom.ui.screen.detail
 
 import android.os.Bundle
 import android.view.View
-import android.widget.HorizontalScrollView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
@@ -24,6 +23,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
 ) {
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var adapter: ImagePagerAdapter
+    private var size: String = ""
 
 
     override fun onCreateViewInvoke() {
@@ -33,6 +33,22 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val productId = args.id.toString()
         viewModel.getAllDetail(productId)
+
+        binding.btnSizeS.setOnClickListener {
+            selectSizeButton(binding.btnSizeS)
+        }
+
+        binding.btnSizeM.setOnClickListener {
+            selectSizeButton(binding.btnSizeM)
+        }
+
+        binding.btnSizeL.setOnClickListener {
+            selectSizeButton(binding.btnSizeL)
+        }
+
+        binding.btnSizeXl.setOnClickListener {
+            selectSizeButton(binding.btnSizeXl)
+        }
     }
 
     private fun handleDetailViewState(uiState: DetailUiState) {
@@ -54,6 +70,15 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         }
     }
 
+    private fun selectSizeButton(selectedButton: AppCompatButton) {
+        binding.btnSizeS.isSelected = false
+        binding.btnSizeM.isSelected = false
+        binding.btnSizeL.isSelected = false
+        binding.btnSizeXl.isSelected = false
+        selectedButton.isSelected = true
+        size = selectedButton.text.toString()
+    }
+
     private fun addBasket() {
         val product = binding.data?.productDetail
         binding.btAddToCart.setOnClickListener {
@@ -63,7 +88,8 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
                 price = product?.price,
                 images = product?.images?.get(0),
                 seller = product?.seller,
-                size = "null"
+                size = size,
+                quantity = 1
             )
             val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
             lifecycleScope.launch {

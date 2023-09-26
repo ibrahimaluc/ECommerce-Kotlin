@@ -165,6 +165,7 @@
                 android:id="@+id/btn_size_s"
                 style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
+                android:state_selected="false"
                 android:text="@string/size_s" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -173,6 +174,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_toEndOf="@id/btn_size_s"
+                android:state_selected="false"
                 android:text="@string/size_m" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -181,6 +183,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_toEndOf="@id/btn_size_m"
+                android:state_selected="false"
                 android:text="@string/size_l" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -189,6 +192,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_toEndOf="@id/btn_size_l"
+                android:state_selected="false"
                 android:text="@string/size_xl" />
         </RelativeLayout>
 
