@@ -82,31 +82,41 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     private fun addBasket() {
         val product = binding.data?.productDetail
         binding.btAddToCart.setOnClickListener {
-            val cartEntity = CartEntity(
-                id = product?.id ?: 0,
-                name = product?.name,
-                price = product?.price,
-                images = product?.images?.get(0),
-                seller = product?.seller,
-                size = size,
-                quantity = 1
-            )
-            val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
-            lifecycleScope.launch {
-                val existingEntity =
-                    cartDao.getCartEntityByIdAndSize(cartEntity.id, cartEntity.size)
-                if (existingEntity != null) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Already in your basket.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    cartDao.insert(cartEntity)
-                    Toast.makeText(requireContext(), "Added to your basket.", Toast.LENGTH_SHORT)
-                        .show()
+            if (size.isEmpty()) {
+                Toast.makeText(requireContext(), "Please select your size.", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                val cartEntity = CartEntity(
+                    id = product?.id ?: 0,
+                    name = product?.name,
+                    price = product?.price,
+                    images = product?.images?.get(0),
+                    seller = product?.seller,
+                    size = size,
+                    quantity = 1
+                )
+                val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
+                lifecycleScope.launch {
+                    val existingEntity =
+                        cartDao.getCartEntityByIdAndSize(cartEntity.id, cartEntity.size)
+                    if (existingEntity != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Already in your basket.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        cartDao.insert(cartEntity)
+                        Toast.makeText(
+                            requireContext(),
+                            "Added to your basket.",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
                 }
             }
+
         }
     }
 }
