@@ -83,7 +83,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         val product = binding.data?.productDetail
         binding.btAddToCart.setOnClickListener {
             val cartEntity = CartEntity(
-                id = product?.id,
+                id = product?.id ?: 0,
                 name = product?.name,
                 price = product?.price,
                 images = product?.images?.get(0),
@@ -93,17 +93,17 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             )
             val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
             lifecycleScope.launch {
-                val existingEntity = cartDao.getCartEntityById(cartEntity.id)
-                if (existingEntity == null) {
-                    cartDao.insert(cartEntity)
-                    Toast.makeText(requireContext(), "Added to your basket", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
+                val existingEntity =
+                    cartDao.getCartEntityByIdAndSize(cartEntity.id, cartEntity.size)
+                if (existingEntity != null) {
                     Toast.makeText(
                         requireContext(),
-                        "Already in your basket",
+                        "Already in your basket.",
                         Toast.LENGTH_SHORT
-                    )
+                    ).show()
+                } else {
+                    cartDao.insert(cartEntity)
+                    Toast.makeText(requireContext(), "Added to your basket.", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
