@@ -1,6 +1,6 @@
 package com.ibrahimaluc.ecom.di
 
-import com.ibrahimaluc.ecom.data.remote.ProductApi
+import com.ibrahimaluc.ecom.data.remote.ProductService
 import com.ibrahimaluc.ecom.data.remote.repository.ProductRepositoryImpl
 import com.ibrahimaluc.ecom.data.util.ProductConstant
 import com.ibrahimaluc.ecom.domain.repository.ProductRepository
@@ -21,13 +21,13 @@ object ProductModule {
 
     @Provides
     @Singleton
-    fun provideProductRepositoryImpl(api: ProductApi): ProductRepository {
+    fun provideProductRepositoryImpl(api: ProductService): ProductRepository {
         return ProductRepositoryImpl(api)
     }
 
     @Provides
     @Singleton
-    fun provideProductApi(): ProductApi {
+    fun provideProductApi(): ProductService {
         val client = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
@@ -38,6 +38,6 @@ object ProductModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(ProductApi::class.java)
+            .create(ProductService::class.java)
     }
 }

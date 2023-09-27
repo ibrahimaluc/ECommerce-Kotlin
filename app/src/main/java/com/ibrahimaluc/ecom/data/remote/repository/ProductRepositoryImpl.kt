@@ -1,7 +1,7 @@
 package com.ibrahimaluc.ecom.data.remote.repository
 
 import com.ibrahimaluc.ecom.core.util.Resource
-import com.ibrahimaluc.ecom.data.remote.ProductApi
+import com.ibrahimaluc.ecom.data.remote.ProductService
 import com.ibrahimaluc.ecom.domain.model.productDetail.ProductDetail
 import com.ibrahimaluc.ecom.domain.model.productHome.ProductHome
 import com.ibrahimaluc.ecom.domain.model.productSearch.ProductSearch
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ProductRepositoryImpl @Inject constructor(
-    private val api: ProductApi
+    private val api: ProductService
 ) : ProductRepository {
 
     override suspend fun getAllProducts(): Flow<Resource<ProductHome>> = flow {

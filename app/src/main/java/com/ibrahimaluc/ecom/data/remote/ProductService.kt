@@ -9,7 +9,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ProductApi {
+interface ProductService {
 
     @GET("api/product")
     @Headers("Authorization: ${ProductConstant.TOKEN}")
