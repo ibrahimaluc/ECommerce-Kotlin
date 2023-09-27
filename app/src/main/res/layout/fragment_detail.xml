@@ -145,7 +145,7 @@
             android:id="@+id/tv_select_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_36"
+            android:layout_marginTop="@dimen/dp_16"
             android:fontFamily="@font/inter_regular"
             android:text="@string/select_size"
             android:textSize="@dimen/sp_16"
@@ -205,9 +205,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_16"
             android:text="@string/add_to_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonLayout" />
 
 

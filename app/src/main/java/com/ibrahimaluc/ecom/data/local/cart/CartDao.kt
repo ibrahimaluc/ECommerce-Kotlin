@@ -22,6 +22,7 @@ interface CartDao {
     @Query("SELECT * FROM cart WHERE id = :id AND size = :size")
     suspend fun getCartEntityByIdAndSize(id: Int, size: String): CartEntity?
 
-
+    @Query("DELETE FROM cart")
+    suspend fun deleteAllCartItems()
 
 }

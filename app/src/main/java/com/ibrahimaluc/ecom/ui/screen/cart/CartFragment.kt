@@ -1,12 +1,16 @@
 package com.ibrahimaluc.ecom.ui.screen.cart
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.data.local.cart.CartDatabase
@@ -20,6 +24,7 @@ class CartFragment : Fragment() {
     private var cartAdapter: CartAdapter? = null
     private var cartList: ArrayList<CartEntity> = arrayListOf()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +37,9 @@ class CartFragment : Fragment() {
         binding = FragmentCartBinding.bind(view)
         setupToolbar()
         loadCartProducts()
+        showCartDialog()
+
+
     }
 
     private fun setupToolbar() {
@@ -57,21 +65,25 @@ class CartFragment : Fragment() {
     }
 
     private fun showEmptyListView() {
-        val emptyListView = LayoutInflater.from(requireContext()).inflate(
-            R.layout.item_empty_cart, binding.cL, false
-        )
-        binding.cL.addView(emptyListView)
+        binding.itemCartEmpty.visibility = View.VISIBLE
         binding.rvCartList.visibility = View.GONE
         binding.llCart.visibility = View.GONE
         binding.btCart.visibility = View.GONE
+
+        val btnGoHome = view?.findViewById<AppCompatButton>(R.id.btn_go_home)
+        btnGoHome?.setOnClickListener {
+            val action = CartFragmentDirections.actionCartFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
     private fun hideEmptyListView() {
-        val emptyListView = binding.cL.findViewById<View>(R.id.emptyListView)
-        binding.cL.removeView(emptyListView)
+        binding.itemCartEmpty.visibility = View.GONE
         binding.rvCartList.visibility = View.VISIBLE
         binding.llCart.visibility = View.VISIBLE
         binding.btCart.visibility = View.VISIBLE
+
 
     }
 
@@ -143,4 +155,26 @@ class CartFragment : Fragment() {
         binding.tvTaxValue.text = String.format("₺ %.2f", tax)
         binding.tvTotalValue.text = String.format("₺ %.2f", grandTotal)
     }
+
+    private fun showCartDialog() {
+        binding.btCart.setOnClickListener {
+            val dialogFragment = CartDialogFragment()
+            val fragmentManager = parentFragmentManager
+            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+            transaction.add(dialogFragment, "cart_dialog")
+            transaction.commit()
+            Handler().postDelayed({
+                val action = CartFragmentDirections.actionCartFragmentToHomeFragment()
+                findNavController().navigate(action)
+                val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
+                lifecycleScope.launch {
+                    cartDao.deleteAllCartItems()
+                }
+            }, 2000)
+        }
+
+
+    }
+
+
 }

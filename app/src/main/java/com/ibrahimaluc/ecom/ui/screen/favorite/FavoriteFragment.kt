@@ -1,17 +1,25 @@
 package com.ibrahimaluc.ecom.ui.screen.favorite
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentFavoriteBinding
 import com.ibrahimaluc.ecom.ui.adapter.FavoriteAdapter
+import com.ibrahimaluc.ecom.ui.screen.home.HomeFragment
+import com.ibrahimaluc.ecom.ui.screen.home.HomeFragmentDirections
 import kotlinx.coroutines.launch
 
 
@@ -59,16 +67,18 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showEmptyListView() {
-        val emptyListView = LayoutInflater.from(requireContext()).inflate(
-            R.layout.item_empty_favorite, binding.cL, false
-        )
-        binding.cL.addView(emptyListView)
         binding.recyclerView.visibility = View.GONE
+        binding.itemFavoriteEmpty.visibility = View.VISIBLE
+        val btnGoHome = view?.findViewById<AppCompatButton>(R.id.btn_go_home)
+        btnGoHome?.setOnClickListener {
+            val action = FavoriteFragmentDirections.actionFavoriteFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
     }
 
+
     private fun hideEmptyListView() {
-        val emptyListView = binding.cL.findViewById<View>(R.id.emptyListView)
-        binding.cL.removeView(emptyListView)
+        binding.itemFavoriteEmpty.visibility = View.GONE
         binding.recyclerView.visibility = View.VISIBLE
     }
 
