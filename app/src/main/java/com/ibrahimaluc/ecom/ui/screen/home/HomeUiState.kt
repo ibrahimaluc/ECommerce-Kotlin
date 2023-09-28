@@ -5,7 +5,6 @@ import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
 
 data class HomeUiState(
     val productList:List<Product>? = arrayListOf(),
-    val searchList: List<SearchResult>? = arrayListOf(),
     val isLoading: Boolean
 
 )

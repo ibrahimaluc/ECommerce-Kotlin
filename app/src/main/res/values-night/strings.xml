@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_home">HOME</string>
+    <string name="title_home">Home</string>
     <string name="title_favorite">FAVORITES</string>
     <string name="title_cart">CART</string>
     <string name="search">Search</string>
@@ -40,4 +40,7 @@
     <string name="empty_cart_message">Start Shopping</string>
     <string name="cart_completed_message">Order Completed</string>
     <string name="search_related">Search Related</string>
+    <string name="no_result_found">No Result Found</string>
+    <string name="back_button">Back Button</string>
+    <string name="title_cart_products">Cart</string>
 </resources>

@@ -42,4 +42,7 @@
     <string name="empty_cart_message">Start Shopping</string>
     <string name="cart_completed_message">Order Completed</string>
     <string name="search_related">Search Related</string>
+    <string name="no_result_found">No Result Found</string>
+    <string name="back_button">Back Button</string>
+    <string name="title_cart_products">Cart</string>
 </resources>

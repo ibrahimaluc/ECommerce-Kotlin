@@ -4,62 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.screen.home.HomeFragment">
 
-    <data>
-
-        <variable
-            name="searchControl"
-            type="Boolean"
-            android:value="false" />
-
-        <import type="android.view.View" />
-    </data>
+    <data></data>
 
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/dp_16">
 
-
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_8">
-
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/search_view_background"
-                app:iconifiedByDefault="false"
-                app:queryHint="@string/search"
-                app:searchIcon="@drawable/icon_search"
-                app:theme="@style/SearchViewStyle" />
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/searchRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="@{searchControl ? View.VISIBLE : View.GONE}"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/item_search" />
+            android:layout_margin="@dimen/dp_8"
+            android:background="@drawable/search_view_background"
+            android:drawableStart="@drawable/icon_search"
+            android:fontFamily="@font/inter_light"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_220"
+            android:text="@string/search"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_4"
-            android:visibility="@{searchControl ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton"
             app:spanCount="2"
             tools:listitem="@layout/item_home" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back_arrow"
-            app:title="@string/title_cart" />
+            app:title="@string/title_cart_products" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nSV"

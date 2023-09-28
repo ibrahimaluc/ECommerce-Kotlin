@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.ibrahimaluc.ecom.core.base.BaseFragment
@@ -33,22 +34,9 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val productId = args.id.toString()
         viewModel.getAllDetail(productId)
+        sizeListener()
+        navigateToSearch()
 
-        binding.btnSizeS.setOnClickListener {
-            selectSizeButton(binding.btnSizeS)
-        }
-
-        binding.btnSizeM.setOnClickListener {
-            selectSizeButton(binding.btnSizeM)
-        }
-
-        binding.btnSizeL.setOnClickListener {
-            selectSizeButton(binding.btnSizeL)
-        }
-
-        binding.btnSizeXl.setOnClickListener {
-            selectSizeButton(binding.btnSizeXl)
-        }
     }
 
     private fun handleDetailViewState(uiState: DetailUiState) {
@@ -67,6 +55,32 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
 
+        }
+    }
+
+    private fun navigateToSearch() {
+        binding.searchButton.setOnClickListener {
+            val action = DetailFragmentDirections.actionDetailFragmentToSearchFragment()
+            findNavController().navigate(action)
+        }
+
+    }
+
+    private fun sizeListener() {
+        binding.btnSizeS.setOnClickListener {
+            selectSizeButton(binding.btnSizeS)
+        }
+
+        binding.btnSizeM.setOnClickListener {
+            selectSizeButton(binding.btnSizeM)
+        }
+
+        binding.btnSizeL.setOnClickListener {
+            selectSizeButton(binding.btnSizeL)
+        }
+
+        binding.btnSizeXl.setOnClickListener {
+            selectSizeButton(binding.btnSizeXl)
         }
     }
 

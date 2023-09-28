@@ -14,29 +14,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbar"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_16"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/search_view_background"
-                app:iconifiedByDefault="false"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:queryHint="@string/search"
-                app:searchIcon="@drawable/icon_search"
-                app:theme="@style/SearchViewStyle" />
-
-
-        </com.google.android.material.appbar.AppBarLayout>
+            android:background="@drawable/search_view_background"
+            android:drawableStart="@drawable/icon_search"
+            android:fontFamily="@font/inter_light"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_220"
+            android:text="@string/search"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
@@ -47,7 +42,7 @@
             android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/searchButton" />
 
 
         <RelativeLayout

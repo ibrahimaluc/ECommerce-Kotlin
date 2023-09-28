@@ -56,35 +56,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getSearchResults(search_query: String) {
-        job = viewModelScope.launch {
-            job = viewModelScope.launch {
-                productRepository.getSearchResults(search_query).onEach { result ->
-                    when (result) {
-                        is Resource.Success -> {
-                            _searchState.value = HomeUiState(
-                                searchList = result.data?.searchResult,
-                                isLoading = false
-                            )
-                        }
-
-                        is Resource.Error -> {
-                            _searchState.value = HomeUiState(
-                                isLoading = false
-                            )
-                        }
-
-                        is Resource.Loading -> {
-                            _searchState.value = HomeUiState(
-                                isLoading = true
-                            )
-                        }
-                    }
-                }.launchIn(this)
-            }
-
-        }
-    }
 
 }
 
