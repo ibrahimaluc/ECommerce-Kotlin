@@ -41,4 +41,5 @@
     <string name="go_home">Return to Homepage</string>
     <string name="empty_cart_message">Start Shopping</string>
     <string name="cart_completed_message">Order Completed</string>
+    <string name="search_related">Search Related</string>
 </resources>
