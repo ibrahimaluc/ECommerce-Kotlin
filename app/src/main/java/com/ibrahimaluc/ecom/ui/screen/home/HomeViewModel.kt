@@ -15,15 +15,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
 ) : BaseViewModel() {
     private val _state: MutableStateFlow<HomeUiState> =
         MutableStateFlow(HomeUiState(isLoading = false))
     val state: StateFlow<HomeUiState> get() = _state
 
-    private val _searchState: MutableStateFlow<HomeUiState> =
-        MutableStateFlow(HomeUiState(isLoading = false))
-    val searchState: StateFlow<HomeUiState> get() = _searchState
 
     init {
         getAllProducts()

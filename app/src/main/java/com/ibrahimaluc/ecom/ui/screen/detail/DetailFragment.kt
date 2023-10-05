@@ -1,5 +1,6 @@
 package com.ibrahimaluc.ecom.ui.screen.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,13 +9,20 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
+import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.data.local.cart.CartDatabase
 import com.ibrahimaluc.ecom.data.local.cart.CartEntity
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentDetailBinding
+import com.ibrahimaluc.ecom.domain.model.productHome.Product
+import com.ibrahimaluc.ecom.ui.adapter.HomeAdapter
 import com.ibrahimaluc.ecom.ui.adapter.ImagePagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -25,6 +33,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var adapter: ImagePagerAdapter
     private var size: String = ""
+    private val favoriteStatusList = mutableListOf<Boolean>()
 
 
     override fun onCreateViewInvoke() {
@@ -44,13 +53,16 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         with(binding) {
             data = uiState.productDetail
             imageAdapter(data?.productDetail?.images)
+            favoriteStatusList.clear()
+            data?.productDetail?.images?.let { List(it.size) { false } }
+                ?.let { favoriteStatusList.addAll(it) }
             addBasket()
         }
     }
 
     private fun imageAdapter(images: List<String>?) {
         images?.let {
-            adapter = ImagePagerAdapter(requireContext(), it)
+            adapter = ImagePagerAdapter(requireContext(), it, ::addLike, favoriteStatusList)
             binding.viewPager.adapter = adapter
             binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
@@ -92,6 +104,34 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         selectedButton.isSelected = true
         size = selectedButton.text.toString()
     }
+
+
+    private fun addLike(position: Int) {
+        val product = binding.data?.productDetail
+        val favoriteEntity = FavoriteEntity(
+            id = product?.id,
+            name = product?.name,
+            price = product?.price,
+            images = product?.images?.get(0),
+        )
+
+        val favoriteDao = FavoriteDatabase.getInstance(requireContext()).favoriteDao()
+        val isLiked = favoriteStatusList[position]
+
+        lifecycleScope.launch {
+            if (isLiked) {
+
+                favoriteDao.delete(favoriteEntity)
+                favoriteStatusList[position] = false
+            } else {
+
+                favoriteDao.insert(favoriteEntity)
+                favoriteStatusList[position] = true
+            }
+
+        }
+    }
+
 
     private fun addBasket() {
         val product = binding.data?.productDetail

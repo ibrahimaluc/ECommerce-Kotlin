@@ -1,7 +1,6 @@
 package com.ibrahimaluc.ecom.ui.screen.cart
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +16,7 @@ import com.ibrahimaluc.ecom.data.local.cart.CartDatabase
 import com.ibrahimaluc.ecom.data.local.cart.CartEntity
 import com.ibrahimaluc.ecom.databinding.FragmentCartBinding
 import com.ibrahimaluc.ecom.ui.adapter.CartAdapter
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class CartFragment : Fragment() {
@@ -95,17 +95,20 @@ class CartFragment : Fragment() {
     }
 
     private fun deleteToCart(position: Int) {
-        val deletedCartEntity = cartList[position]
         val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
         lifecycleScope.launch {
-            cartDao.delete(deletedCartEntity)
-            cartList.removeAt(position)
-            cartAdapter?.notifyItemRemoved(position)
-
-            if (cartList.isEmpty()) {
-                showEmptyListView()
+            if (position >= 0 && position < cartList.size) {
+                val deletedFavoriteEntity = cartList[position]
+                cartDao.delete(deletedFavoriteEntity)
+                cartList.removeAt(position)
+                cartAdapter?.notifyItemRemoved(position)
+                calculateCost()
+                if (cartList.isEmpty()) {
+                    showEmptyListView()
+                } else {
+                    cartAdapter?.notifyItemRangeChanged(position, cartList.size)
+                }
             }
-            calculateCost()
         }
 
     }
@@ -163,14 +166,14 @@ class CartFragment : Fragment() {
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()
             transaction.add(dialogFragment, "cart_dialog")
             transaction.commit()
-            Handler().postDelayed({
+            lifecycleScope.launch {
+                delay(3000)
                 val action = CartFragmentDirections.actionCartFragmentToHomeFragment()
                 findNavController().navigate(action)
+
                 val cartDao = CartDatabase.getInstance(requireContext()).cartDao()
-                lifecycleScope.launch {
-                    cartDao.deleteAllCartItems()
-                }
-            }, 2000)
+                cartDao.deleteAllCartItems()
+            }
         }
 
 

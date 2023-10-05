@@ -68,6 +68,7 @@ class HomeAdapter(
 
         ) {
 
+
         val favoriteEntity = FavoriteEntity(
             id = product.id,
             name = product.name,

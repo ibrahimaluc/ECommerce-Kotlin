@@ -1,16 +1,12 @@
 package com.ibrahimaluc.ecom.ui.screen.favorite
 
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ibrahimaluc.ecom.R
@@ -18,8 +14,6 @@ import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentFavoriteBinding
 import com.ibrahimaluc.ecom.ui.adapter.FavoriteAdapter
-import com.ibrahimaluc.ecom.ui.screen.home.HomeFragment
-import com.ibrahimaluc.ecom.ui.screen.home.HomeFragmentDirections
 import kotlinx.coroutines.launch
 
 
@@ -83,8 +77,24 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showFavoriteProducts() {
-        favoriteAdapter = FavoriteAdapter(favoriteList)
+        favoriteAdapter = FavoriteAdapter(favoriteList, ::deleteProduct)
         binding.recyclerView.adapter = favoriteAdapter
     }
 
+    private fun deleteProduct(position: Int) {
+        val deleteDao = FavoriteDatabase.getInstance(requireContext()).favoriteDao()
+        lifecycleScope.launch {
+            if (position >= 0 && position < favoriteList.size) {
+                val deletedFavoriteEntity = favoriteList[position]
+                deleteDao.delete(deletedFavoriteEntity)
+                favoriteList.removeAt(position)
+                favoriteAdapter?.notifyItemRemoved(position)
+                if (favoriteList.isEmpty()) {
+                    showEmptyListView()
+                } else {
+                    favoriteAdapter?.notifyItemRangeChanged(position, favoriteList.size)
+                }
+            }
+        }
+    }
 }
