@@ -12,8 +12,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/productCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_250"
         android:layout_margin="@dimen/dp_8"
         app:cardCornerRadius="@dimen/dp_4"
         app:cardElevation="@dimen/dp_2"
@@ -21,8 +21,8 @@
 
 
         <RelativeLayout
-            android:layout_width="@dimen/dp_200"
-            android:layout_height="@dimen/dp_250">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/iv_product_image"

@@ -12,7 +12,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/productCard"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_8"
         app:cardCornerRadius="@dimen/dp_4"
@@ -21,8 +21,8 @@
 
 
         <RelativeLayout
-            android:layout_width="@dimen/dp_200"
-            android:layout_height="@dimen/dp_250"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true">
 
             <ImageView
@@ -40,13 +40,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginEnd="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_8"
                 android:background="@drawable/favorite_background">
 
                 <ImageButton
                     android:id="@+id/ib_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
                     android:layout_centerVertical="true"
                     android:background="@null"
                     android:contentDescription="@string/icon_like"
@@ -67,8 +67,8 @@
 
                 <ImageView
                     android:id="@+id/iv_star"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dp_8"
+                    android:layout_height="@dimen/dp_8"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dp_2"
                     android:contentDescription="@string/star"
