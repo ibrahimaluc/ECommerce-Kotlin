@@ -1,8 +1,8 @@
 package com.ibrahimaluc.ecom.ui.screen.detail
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
@@ -17,12 +17,8 @@ import com.ibrahimaluc.ecom.data.local.cart.CartEntity
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentDetailBinding
-import com.ibrahimaluc.ecom.domain.model.productHome.Product
-import com.ibrahimaluc.ecom.ui.adapter.HomeAdapter
 import com.ibrahimaluc.ecom.ui.adapter.ImagePagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -65,7 +61,10 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             adapter = ImagePagerAdapter(requireContext(), it, ::addLike, favoriteStatusList)
             binding.viewPager.adapter = adapter
             binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
+            binding.indicator.setViewPager(binding.viewPager)
+            val heartBeatAnimation =
+                AnimationUtils.loadAnimation(requireContext(), R.anim.indicator)
+            binding.indicator.startAnimation(heartBeatAnimation)
 
         }
     }
@@ -117,21 +116,28 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
 
         val favoriteDao = FavoriteDatabase.getInstance(requireContext()).favoriteDao()
         val isLiked = favoriteStatusList[position]
-
         lifecycleScope.launch {
             if (isLiked) {
-
                 favoriteDao.delete(favoriteEntity)
                 favoriteStatusList[position] = false
+                Toast.makeText(
+                    requireContext(),
+                    "Deleted from your favorites.",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-
                 favoriteDao.insert(favoriteEntity)
                 favoriteStatusList[position] = true
+                Toast.makeText(
+                    requireContext(),
+                    "Added to your favorites.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+            adapter.notifyDataSetChanged()
 
         }
     }
-
 
     private fun addBasket() {
         val product = binding.data?.productDetail
@@ -170,7 +176,6 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
                     }
                 }
             }
-
         }
     }
 }

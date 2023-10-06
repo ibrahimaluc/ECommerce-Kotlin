@@ -52,16 +52,6 @@
                     android:src="@drawable/icon_favorite_passive" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/buttonContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/dp_24"
-                android:orientation="horizontal">
-
-            </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

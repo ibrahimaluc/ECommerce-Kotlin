@@ -33,17 +33,30 @@
             android:textSize="@dimen/sp_16"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
+        <RelativeLayout
+            android:id="@+id/viewPagerLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_300"
             android:layout_margin="@dimen/dp_16"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchButton" />
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/searchButton">
 
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_36"
+                android:layout_alignParentBottom="true"
+                app:ci_drawable="@drawable/custom_clicked_button_background"
+                app:ci_drawable_unselected="@drawable/custom_button_background"
+                app:layout_constraintBottom_toBottomOf="@id/viewPager" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/ratingLayout"
@@ -51,7 +64,7 @@
             android:layout_height="@dimen/dp_36"
             android:layout_marginTop="@dimen/dp_2"
             android:layout_marginEnd="@dimen/dp_16"
-            app:layout_constraintTop_toBottomOf="@id/viewPager">
+            app:layout_constraintTop_toBottomOf="@id/viewPagerLayout">
 
             <ImageView
                 android:id="@+id/iv_star"

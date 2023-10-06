@@ -2,6 +2,7 @@ package com.ibrahimaluc.ecom.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -15,11 +16,14 @@ class ImagePagerAdapter(
     private val context: Context,
     private val imageList: List<String>,
     private val onLikeClickListener: (position: Int) -> Unit,
-    private val favoriteStatusList: List<Boolean>
+    private val favoriteStatusList: MutableList<Boolean>,
+
 
     ) : RecyclerView.Adapter<ImagePagerAdapter.ImagePagerViewHolder>() {
 
     class ImagePagerViewHolder(var binding: ItemImageCarouselBinding) : ViewHolder(binding.root)
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePagerViewHolder {
         return ImagePagerViewHolder(
@@ -32,14 +36,12 @@ class ImagePagerAdapter(
     }
 
     override fun onBindViewHolder(holder: ImagePagerViewHolder, position: Int) {
-        val imageUrl = imageList[position]
-        val requestOptions = RequestOptions()
-            .placeholder(R.drawable.product_placeholder_gray)
-        Glide.with(context)
-            .load(ProductConstant.BASE_URL_MEDIA + imageUrl)
-            .apply(requestOptions)
-            .into(holder.binding.ivProductImage)
+        image(position, holder)
+        like(position, holder)
 
+    }
+
+    private fun like(position: Int, holder: ImagePagerViewHolder) {
         val isLiked = favoriteStatusList[position]
         if (isLiked) {
             holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_filled)
@@ -48,9 +50,18 @@ class ImagePagerAdapter(
         }
 
         holder.binding.ibLike.setOnClickListener {
-           onLikeClickListener(position)
+            onLikeClickListener(position)
         }
+    }
 
+    private fun image(position: Int, holder: ImagePagerViewHolder) {
+        val imageUrl = imageList[position]
+        val requestOptions = RequestOptions()
+            .placeholder(R.drawable.product_placeholder_gray)
+        Glide.with(context)
+            .load(ProductConstant.BASE_URL_MEDIA + imageUrl)
+            .apply(requestOptions)
+            .into(holder.binding.ivProductImage)
     }
 
     override fun getItemCount(): Int {

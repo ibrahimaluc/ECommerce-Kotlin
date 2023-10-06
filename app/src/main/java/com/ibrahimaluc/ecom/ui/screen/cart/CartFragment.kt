@@ -175,9 +175,5 @@ class CartFragment : Fragment() {
                 cartDao.deleteAllCartItems()
             }
         }
-
-
     }
-
-
 }
