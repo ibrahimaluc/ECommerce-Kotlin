@@ -43,4 +43,5 @@
     <string name="no_result_found">No Result Found</string>
     <string name="back_button">Back Button</string>
     <string name="title_cart_products">Cart</string>
+    <string name="latest_searched">Latest searched</string>
 </resources>

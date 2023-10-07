@@ -4,9 +4,11 @@ package com.ibrahimaluc.ecom.ui.screen.search
 import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.hideKeyboard
+import com.ibrahimaluc.ecom.core.extensions.showKeyboard
 import com.ibrahimaluc.ecom.databinding.FragmentSearchBinding
 import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
 import com.ibrahimaluc.ecom.ui.adapter.SearchAdapter
@@ -32,6 +34,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         searchAdapter()
         inItClickListener()
         backButton()
+        searchView.requestFocus()
+        showKeyboard(searchView)
     }
 
     override fun onQueryTextSubmit(searchQuery: String?): Boolean {
@@ -48,7 +52,9 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
             viewModel.getSearchResults(newQuery)
             binding.searchControl = true
         } else {
-
+            searchList.clear()
+            searchAdapter?.searchList = emptyList()
+            searchAdapter?.notifyDataSetChanged()
             binding.searchControl = false
             hideKeyboard()
         }
@@ -77,12 +83,19 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
     }
 
     private fun inItClickListener() = with(binding) {
+        val searchView = binding.searchView
         searchView.setOnCloseListener {
-            hideKeyboard()
+            searchRelated.text = requireContext().getString(R.string.latest_searched)
             searchView.setQuery("", false)
-            false
+            searchList.clear()
+            searchAdapter?.searchList = emptyList()
+            searchAdapter?.notifyDataSetChanged()
+            binding.searchControl = false
+            hideKeyboard()
+            true
         }
     }
+
 
     private fun backButton() {
         binding.backButton.setOnClickListener {
