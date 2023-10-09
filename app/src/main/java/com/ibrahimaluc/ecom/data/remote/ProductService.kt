@@ -1,7 +1,6 @@
 package com.ibrahimaluc.ecom.data.remote
 
 import com.ibrahimaluc.ecom.BuildConfig
-import com.ibrahimaluc.ecom.data.util.ProductConstant
 import com.ibrahimaluc.ecom.domain.model.productDetail.ProductDetail
 import com.ibrahimaluc.ecom.domain.model.productHome.ProductHome
 import com.ibrahimaluc.ecom.domain.model.productSearch.ProductSearch

@@ -6,12 +6,12 @@ import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.ibrahimaluc.ecom.BuildConfig
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.util.ProductConstant
 
 @BindingAdapter("android:getImage")
 fun getImage(view: ImageView, imageUri: String?) {
-    val baseUrl: String = ProductConstant.BASE_URL_MEDIA
+    val baseUrl: String = BuildConfig.BASE_URL_MEDIA
     val placeholder: CircularProgressDrawable = CircularProgressDrawable(view.context).apply {
         setColorSchemeColors(ContextCompat.getColor(view.context, R.color.green))
         strokeWidth = 8f
