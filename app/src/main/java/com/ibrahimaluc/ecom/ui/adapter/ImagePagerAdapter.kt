@@ -45,8 +45,10 @@ class ImagePagerAdapter(
         val isLiked = favoriteStatusList[position]
         if (isLiked) {
             holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_filled)
+            favoriteStatusList.replaceAll { true }
         } else {
             holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_passive)
+            favoriteStatusList.replaceAll { false }
         }
 
         holder.binding.ibLike.setOnClickListener {
