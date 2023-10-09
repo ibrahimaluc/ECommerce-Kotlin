@@ -3,7 +3,7 @@ package com.ibrahimaluc.ecom.ui.screen.detail
 import androidx.lifecycle.viewModelScope
 import com.ibrahimaluc.ecom.core.base.BaseViewModel
 import com.ibrahimaluc.ecom.core.util.Resource
-import com.ibrahimaluc.ecom.domain.repository.ProductRepository
+import com.ibrahimaluc.ecom.data.remote.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
