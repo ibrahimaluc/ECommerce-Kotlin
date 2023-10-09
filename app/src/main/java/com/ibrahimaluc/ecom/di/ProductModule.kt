@@ -1,5 +1,6 @@
 package com.ibrahimaluc.ecom.di
 
+import com.ibrahimaluc.ecom.BuildConfig
 import com.ibrahimaluc.ecom.data.remote.ProductService
 import com.ibrahimaluc.ecom.data.remote.repository.ProductRepositoryImpl
 import com.ibrahimaluc.ecom.data.util.ProductConstant
@@ -34,7 +35,7 @@ object ProductModule {
             })
             .build()
 
-        return Retrofit.Builder().baseUrl(ProductConstant.BASE_URL)
+        return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
