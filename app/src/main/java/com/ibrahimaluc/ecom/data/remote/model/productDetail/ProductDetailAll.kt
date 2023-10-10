@@ -1,4 +1,4 @@
-package com.ibrahimaluc.ecom.domain.model.productDetail
+package com.ibrahimaluc.ecom.data.remote.model.productDetail
 
 
 import com.google.gson.annotations.SerializedName

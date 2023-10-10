@@ -12,7 +12,7 @@ import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemHomeBinding
-import com.ibrahimaluc.ecom.domain.model.productHome.Product
+import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

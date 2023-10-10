@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.ibrahimaluc.ecom.domain.model.productDetail.ProductDetail" />
+            type="com.ibrahimaluc.ecom.data.remote.model.productDetail.ProductDetail" />
 
     </data>
 

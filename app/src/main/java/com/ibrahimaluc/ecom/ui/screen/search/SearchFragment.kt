@@ -10,7 +10,7 @@ import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.hideKeyboard
 import com.ibrahimaluc.ecom.core.extensions.showKeyboard
 import com.ibrahimaluc.ecom.databinding.FragmentSearchBinding
-import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
+import com.ibrahimaluc.ecom.data.remote.model.productSearch.SearchResult
 import com.ibrahimaluc.ecom.ui.adapter.SearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList

@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult" />
+            type="com.ibrahimaluc.ecom.data.remote.model.productSearch.SearchResult" />
     </data>
 
 

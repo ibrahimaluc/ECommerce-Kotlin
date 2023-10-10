@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ibrahimaluc.ecom.databinding.ItemSearchBinding
-import com.ibrahimaluc.ecom.domain.model.productSearch.SearchResult
+import com.ibrahimaluc.ecom.data.remote.model.productSearch.SearchResult
 
 class SearchAdapter(private val clickControl: (Int) -> Unit) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
-import com.ibrahimaluc.ecom.domain.model.productHome.Product
+import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
 import com.ibrahimaluc.ecom.ui.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList

@@ -2,9 +2,9 @@ package com.ibrahimaluc.ecom.data.remote.repository
 
 import com.ibrahimaluc.ecom.core.util.Resource
 import com.ibrahimaluc.ecom.data.remote.ProductService
-import com.ibrahimaluc.ecom.domain.model.productDetail.ProductDetail
-import com.ibrahimaluc.ecom.domain.model.productHome.ProductHome
-import com.ibrahimaluc.ecom.domain.model.productSearch.ProductSearch
+import com.ibrahimaluc.ecom.data.remote.model.productDetail.ProductDetail
+import com.ibrahimaluc.ecom.data.remote.model.productHome.ProductHome
+import com.ibrahimaluc.ecom.data.remote.model.productSearch.ProductSearch
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
