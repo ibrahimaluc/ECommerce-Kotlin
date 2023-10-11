@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsRoomDB
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentFavoriteBinding
 import com.ibrahimaluc.ecom.ui.adapter.FavoriteAdapter
@@ -48,7 +48,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun loadFavoriteProducts() {
-        val favoriteDao = FavoriteDatabase.getInstance(requireContext()).favoriteDao()
+        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
         lifecycleScope.launch {
             favoriteList = favoriteDao.getFavoriteProducts() as ArrayList<FavoriteEntity>
             if (favoriteList.isEmpty()) {
@@ -82,7 +82,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun deleteProduct(position: Int) {
-        val deleteDao = FavoriteDatabase.getInstance(requireContext()).favoriteDao()
+        val deleteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
         lifecycleScope.launch {
             if (position >= 0 && position < favoriteList.size) {
                 val deletedFavoriteEntity = favoriteList[position]

@@ -14,7 +14,7 @@ import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.data.local.cart.CartDatabase
 import com.ibrahimaluc.ecom.data.local.cart.CartEntity
-import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsRoomDB
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentDetailBinding
 import com.ibrahimaluc.ecom.ui.adapter.ImagePagerAdapter
@@ -114,7 +114,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             images = product?.images?.get(0),
         )
 
-        val favoriteDao = FavoriteDatabase.getInstance(requireContext()).favoriteDao()
+        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
         val isLiked = favoriteStatusList[position]
         lifecycleScope.launch {
             if (isLiked) {

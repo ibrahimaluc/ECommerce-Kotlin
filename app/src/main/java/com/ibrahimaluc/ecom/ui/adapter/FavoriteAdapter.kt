@@ -1,19 +1,12 @@
 package com.ibrahimaluc.ecom.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemFavoriteBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FavoriteAdapter(
     private val favoriteList: ArrayList<FavoriteEntity>,

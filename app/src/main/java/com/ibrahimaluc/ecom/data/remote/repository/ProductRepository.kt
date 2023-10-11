@@ -1,6 +1,8 @@
 package com.ibrahimaluc.ecom.data.remote.repository
 
 import com.ibrahimaluc.ecom.core.util.Resource
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsDAO
 import com.ibrahimaluc.ecom.data.remote.ProductService
 import com.ibrahimaluc.ecom.data.remote.model.productDetail.ProductDetail
 import com.ibrahimaluc.ecom.data.remote.model.productHome.ProductHome
@@ -11,6 +13,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class ProductRepository(
     private val productService: ProductService,
+    private val favoriteProductsDAO: FavoriteProductsDAO
 ) {
     fun getAllProducts(): Flow<Resource<ProductHome>> = callbackFlow {
         try {
@@ -42,41 +45,9 @@ class ProductRepository(
         awaitClose { channel.close() }
     }
 
-//    override suspend fun getAllProducts(): Flow<Resource<ProductHome>> = flow {
-//        emit(Resource.Loading())
-//        try {
-//            val response = api.getAllProducts()
-//            emit(Resource.Success(response))
-//        } catch (e: HttpException) {
-//            emit(Resource.Error(message = "Http Error!"))
-//        } catch (ioException: IOException) {
-//            emit(Resource.Error(message = "Network Error: ${ioException.localizedMessage}"))
-//        }
-//    }
-//
-//    override suspend fun getSearchResults(search_query: String): Flow<Resource<ProductSearch>> =
-//        flow {
-//            emit(Resource.Loading())
-//            try {
-//                val response = api.getSearchResults(search_query)
-//                emit(Resource.Success(response))
-//            } catch (e: HttpException) {
-//                emit(Resource.Error(message = "Http Error!"))
-//            } catch (ioException: IOException) {
-//                emit(Resource.Error(message = "Network Error: ${ioException.localizedMessage}"))
-//            }
-//        }
-//
-//    override suspend fun getProductDetail(product_id: String): Flow<Resource<ProductDetail>> =
-//        flow {
-//            emit(Resource.Loading())
-//            try {
-//                val response = api.getProductDetail(product_id)
-//                emit(Resource.Success(response))
-//            } catch (e: HttpException) {
-//                emit(Resource.Error(message = "Http Error!"))
-//            } catch (ioException: IOException) {
-//                emit(Resource.Error(message = "Network Error: ${ioException.localizedMessage}"))
-//            }
-//        }
+    suspend fun addFavoriteProductRoom(favProduct: FavoriteEntity) =
+        favoriteProductsDAO.addFavorite(favProduct)
+
+    suspend fun deleteFavoriteProductRoom(favProductId: FavoriteEntity) =
+        favoriteProductsDAO.deleteFavorite(favProductId)
 }

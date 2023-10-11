@@ -21,7 +21,6 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(HomeUiState(isLoading = false))
     val state: StateFlow<HomeUiState> get() = _state
 
-
     init {
         getAllProducts()
     }
@@ -52,8 +51,6 @@ class HomeViewModel @Inject constructor(
             }.launchIn(this)
         }
     }
-
-
 }
 
 

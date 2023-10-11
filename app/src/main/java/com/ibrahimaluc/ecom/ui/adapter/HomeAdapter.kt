@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.favorite.FavoriteDatabase
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsRoomDB
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemHomeBinding
 import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
@@ -77,7 +77,7 @@ class HomeAdapter(
 
             )
         val favoriteDao =
-            FavoriteDatabase.getInstance(context).favoriteDao()
+            FavoriteProductsRoomDB.getInstance(context).favoriteDao()
         CoroutineScope(Dispatchers.IO).launch {
             val existingEntity = favoriteDao.getFavoriteEntityById(favoriteEntity.id)
             if (existingEntity == null) {

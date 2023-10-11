@@ -6,9 +6,9 @@ import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface FavoriteDao {
+interface FavoriteProductsDAO {
     @Insert
-    suspend fun insert(favorite: FavoriteEntity)
+    suspend fun addFavorite(favorite: FavoriteEntity)
 
     @Query("SELECT * FROM favorite")
     suspend fun getFavoriteProducts(): List<FavoriteEntity>
@@ -17,5 +17,5 @@ interface FavoriteDao {
     suspend fun getFavoriteEntityById(id: Int?): FavoriteEntity?
 
     @Delete
-    suspend fun delete(favorite: FavoriteEntity)
+    suspend fun deleteFavorite(favorite: FavoriteEntity)
 }
