@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Product(
     @SerializedName("id")
-    val id: Int?,
+    val id: Int,
     @SerializedName("images")
-    val images: String?,
+    val images: String,
     @SerializedName("name")
-    val name: String?,
+    val name: String,
     @SerializedName("price")
-    val price: Double?
+    val price: Double
 )

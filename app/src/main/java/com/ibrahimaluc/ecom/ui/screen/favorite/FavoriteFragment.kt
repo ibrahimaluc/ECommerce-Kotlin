@@ -35,7 +35,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFavoriteBinding.bind(view)
         setupToolbar()
-        loadFavoriteProducts()
+//        loadFavoriteProducts()
     }
 
     private fun setupToolbar() {
@@ -47,18 +47,18 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun loadFavoriteProducts() {
-        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
-        lifecycleScope.launch {
-            favoriteList = favoriteDao.getFavoriteProducts() as ArrayList<FavoriteEntity>
-            if (favoriteList.isEmpty()) {
-                showEmptyListView()
-            } else {
-                hideEmptyListView()
-                showFavoriteProducts()
-            }
-        }
-    }
+//    private fun loadFavoriteProducts() {
+//        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
+//        lifecycleScope.launch {
+//            favoriteList = favoriteDao.getFavoriteProducts()
+//            if (favoriteList.isEmpty()) {
+//                showEmptyListView()
+//            } else {
+//                hideEmptyListView()
+//                showFavoriteProducts()
+//            }
+//        }
+//    }
 
     private fun showEmptyListView() {
         binding.recyclerView.visibility = View.GONE
@@ -77,24 +77,24 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showFavoriteProducts() {
-        favoriteAdapter = FavoriteAdapter(favoriteList, ::deleteProduct)
+//        favoriteAdapter = FavoriteAdapter(favoriteList, ::deleteProduct)
         binding.recyclerView.adapter = favoriteAdapter
     }
 
-    private fun deleteProduct(position: Int) {
-        val deleteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
-        lifecycleScope.launch {
-            if (position >= 0 && position < favoriteList.size) {
-                val deletedFavoriteEntity = favoriteList[position]
-                deleteDao.delete(deletedFavoriteEntity)
-                favoriteList.removeAt(position)
-                favoriteAdapter?.notifyItemRemoved(position)
-                if (favoriteList.isEmpty()) {
-                    showEmptyListView()
-                } else {
-                    favoriteAdapter?.notifyItemRangeChanged(position, favoriteList.size)
-                }
-            }
-        }
-    }
+//    private fun deleteProduct(position: Int) {
+//        val deleteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
+//        lifecycleScope.launch {
+//            if (position >= 0 && position < favoriteList.size) {
+//                val deletedFavoriteEntity = favoriteList[position]
+//                deleteDao.delete(deletedFavoriteEntity)
+//                favoriteList.removeAt(position)
+//                favoriteAdapter?.notifyItemRemoved(position)
+//                if (favoriteList.isEmpty()) {
+//                    showEmptyListView()
+//                } else {
+//                    favoriteAdapter?.notifyItemRangeChanged(position, favoriteList.size)
+//                }
+//            }
+//        }
+//    }
 }

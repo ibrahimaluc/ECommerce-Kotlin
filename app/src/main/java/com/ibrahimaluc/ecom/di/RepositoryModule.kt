@@ -1,5 +1,6 @@
 package com.ibrahimaluc.ecom.di
 
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsDAO
 import com.ibrahimaluc.ecom.data.remote.ProductService
 import com.ibrahimaluc.ecom.data.remote.repository.ProductRepository
 import dagger.Module
@@ -16,7 +17,7 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideProductRepository(
-        productService: ProductService
+        productService: ProductService, favoriteProductsDAO: FavoriteProductsDAO
 
-    ): ProductRepository = ProductRepository(productService)
+    ): ProductRepository = ProductRepository(productService, favoriteProductsDAO)
 }

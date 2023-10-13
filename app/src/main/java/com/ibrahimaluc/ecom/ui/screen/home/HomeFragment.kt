@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
 import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
 import com.ibrahimaluc.ecom.ui.adapter.HomeAdapter
@@ -28,6 +29,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         navigateToSearch()
 
     }
+
     private fun handleHomeViewState(uiState: HomeUiState) {
         setProgressStatus(uiState.isLoading)
         uiState.productList?.let {
@@ -38,10 +40,26 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 
 
     private fun homeAdapter() = with(binding) {
-        homeAdapter = HomeAdapter(::navigateToDetail)
+        homeAdapter = HomeAdapter(::navigateToDetail, ::like)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = homeAdapter
 
+    }
+
+    private fun like(position: Int) {
+        val product = productList[position]
+        if (viewModel.state.value.isFavProduct) {
+            val favoriteEntity = FavoriteEntity(
+                id = product.id,
+                name = product.name,
+                price = product.price,
+                images = product.images
+            )
+            viewModel.addFavoriteProductRoom(favoriteEntity)
+        } else {
+            viewModel.deleteFavWallpaperRoom()
+
+        }
     }
 
     private fun navigateToSearch() {

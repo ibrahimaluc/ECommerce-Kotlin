@@ -45,9 +45,14 @@ class ProductRepository(
         awaitClose { channel.close() }
     }
 
+    fun checkFavoriteProduct(id: Int): Flow<Boolean> = callbackFlow {
+        trySend(favoriteProductsDAO.getFavoriteById(id) != null)
+        awaitClose { channel.close() }
+    }
+
     suspend fun addFavoriteProductRoom(favProduct: FavoriteEntity) =
         favoriteProductsDAO.addFavorite(favProduct)
 
-    suspend fun deleteFavoriteProductRoom(favProductId: FavoriteEntity) =
-        favoriteProductsDAO.deleteFavorite(favProductId)
+    suspend fun deleteFavoriteProductRoom(favProduct: FavoriteEntity) =
+        favoriteProductsDAO.deleteFavorite(favProduct)
 }

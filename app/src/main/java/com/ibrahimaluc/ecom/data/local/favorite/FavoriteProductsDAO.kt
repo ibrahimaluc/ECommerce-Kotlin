@@ -14,7 +14,7 @@ interface FavoriteProductsDAO {
     suspend fun getFavoriteProducts(): List<FavoriteEntity>
 
     @Query("SELECT * FROM favorite WHERE id=:id")
-    suspend fun getFavoriteEntityById(id: Int?): FavoriteEntity?
+    suspend fun getFavoriteById(id: Int?): FavoriteEntity?
 
     @Delete
     suspend fun deleteFavorite(favorite: FavoriteEntity)

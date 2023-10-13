@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class ProductHome(
     @SerializedName("products")
-    val products: List<Product>?
+    val products: List<Product>
 )

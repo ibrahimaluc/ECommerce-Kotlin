@@ -58,7 +58,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
 
     private fun imageAdapter(images: List<String>?) {
         images?.let {
-            adapter = ImagePagerAdapter(requireContext(), it, ::addLike, favoriteStatusList)
+//            adapter = ImagePagerAdapter(requireContext(), it, ::addLike, favoriteStatusList)
             binding.viewPager.adapter = adapter
             binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             binding.indicator.setViewPager(binding.viewPager)
@@ -105,39 +105,39 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     }
 
 
-    private fun addLike(position: Int) {
-        val product = binding.data?.productDetail
-        val favoriteEntity = FavoriteEntity(
-            id = product?.id,
-            name = product?.name,
-            price = product?.price,
-            images = product?.images?.get(0),
-        )
-
-        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
-        val isLiked = favoriteStatusList[position]
-        lifecycleScope.launch {
-            if (isLiked) {
-                favoriteDao.delete(favoriteEntity)
-                favoriteStatusList[position] = false
-                Toast.makeText(
-                    requireContext(),
-                    "Deleted from your favorites.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                favoriteDao.insert(favoriteEntity)
-                favoriteStatusList[position] = true
-                Toast.makeText(
-                    requireContext(),
-                    "Added to your favorites.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            adapter.notifyDataSetChanged()
-
-        }
-    }
+//    private fun addLike(position: Int) {
+//        val product = binding.data?.productDetail
+//        val favoriteEntity = FavoriteEntity(
+//            id = product?.id,
+//            name = product?.name,
+//            price = product?.price,
+//            images = product?.images?.get(0),
+//        )
+//
+//        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
+//        val isLiked = favoriteStatusList[position]
+//        lifecycleScope.launch {
+//            if (isLiked) {
+//                favoriteDao.delete(favoriteEntity)
+//                favoriteStatusList[position] = false
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Deleted from your favorites.",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            } else {
+//                favoriteDao.insert(favoriteEntity)
+//                favoriteStatusList[position] = true
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Added to your favorites.",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//            adapter.notifyDataSetChanged()
+//
+//        }
+//    }
 
     private fun addBasket() {
         val product = binding.data?.productDetail
