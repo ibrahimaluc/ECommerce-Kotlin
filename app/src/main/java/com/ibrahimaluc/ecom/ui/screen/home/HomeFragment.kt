@@ -3,8 +3,10 @@ package com.ibrahimaluc.ecom.ui.screen.home
 
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
+import com.ibrahimaluc.ecom.core.extensions.showToast
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
 import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
@@ -27,7 +29,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         collectLatestLifecycleFlow(viewModel.state, ::handleHomeViewState)
         homeAdapter()
         navigateToSearch()
-
     }
 
     private fun handleHomeViewState(uiState: HomeUiState) {
@@ -46,18 +47,28 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 
     }
 
-    private fun like(position: Int) {
-        val product = productList[position]
+    private fun like(position: Int, product: Product) {
+
+        val favoriteEntity = FavoriteEntity(
+            id = product.id,
+            name = product.name,
+            price = product.price,
+            images = product.images
+        )
         if (viewModel.state.value.isFavProduct) {
-            val favoriteEntity = FavoriteEntity(
-                id = product.id,
-                name = product.name,
-                price = product.price,
-                images = product.images
-            )
             viewModel.addFavoriteProductRoom(favoriteEntity)
+            val viewHolder = binding.recyclerView.findViewHolderForAdapterPosition(position)
+            if (viewHolder is HomeAdapter.HomeViewHolder) {
+                viewHolder.binding.ibLike.setImageResource(R.drawable.icon_favorite_filled)
+            }
+            context?.showToast("added.")
         } else {
-            viewModel.deleteFavWallpaperRoom()
+            viewModel.deleteFavWallpaperRoom(favoriteEntity)
+            val viewHolder = binding.recyclerView.findViewHolderForAdapterPosition(position)
+            if (viewHolder is HomeAdapter.HomeViewHolder) {
+                viewHolder.binding.ibLike.setImageResource(R.drawable.icon_favorite_passive)
+            }
+            context?.showToast("deleted.")
 
         }
     }

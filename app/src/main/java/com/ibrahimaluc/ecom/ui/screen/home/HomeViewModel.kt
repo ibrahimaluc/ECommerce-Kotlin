@@ -18,22 +18,21 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val productRepository: ProductRepository,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
     private val _state: MutableStateFlow<HomeUiState> =
         MutableStateFlow(HomeUiState(isLoading = false))
     val state: StateFlow<HomeUiState> get() = _state
 
     private lateinit var favoriteProduct: FavoriteEntity
-    private var fav = false
-
 
     init {
         getAllProducts()
         savedStateHandle.get<FavoriteEntity>("favoriteProduct")?.let {
-            this@HomeViewModel.favoriteProduct = it
+            this@HomeViewModel.favoriteProduct=it
             checkFavoriteProduct(it)
         }
+
     }
 
     private fun getAllProducts() {
@@ -43,7 +42,7 @@ class HomeViewModel @Inject constructor(
                     is Resource.Success -> {
                         _state.value = HomeUiState(
                             productList = result.data?.products,
-                            isLoading = false
+                            isLoading = false,
                         )
                     }
 
@@ -63,20 +62,23 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun checkFavoriteProduct(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
+     private fun checkFavoriteProduct(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
         productRepository.checkFavoriteProduct(favoriteProduct.id).collect {
             val currentState = _state.value
             _state.value = currentState.copy(isFavProduct = it)
         }
     }
 
-    fun addFavoriteProductRoom(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
-        productRepository.addFavoriteProductRoom(favoriteEntity)
-        fav = !fav
+    fun addFavoriteProductRoom(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
+        productRepository.addFavoriteProductRoom(favoriteProduct)
+        val currentState = _state.value
+        _state.value = currentState.copy(isFavProduct = true)
     }
 
-    fun deleteFavWallpaperRoom() = viewModelScope.launch {
-        productRepository.deleteFavoriteProductRoom(favoriteProduct)
+    fun deleteFavWallpaperRoom(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
+        productRepository.deleteFavoriteProductRoom(favoriteEntity)
+        val currentState = _state.value
+        _state.value = currentState.copy(isFavProduct = false)
     }
 }
 
