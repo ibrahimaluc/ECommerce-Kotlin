@@ -1,42 +1,34 @@
 package com.ibrahimaluc.ecom.ui.screen.favorite
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsRoomDB
+import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.FragmentFavoriteBinding
 import com.ibrahimaluc.ecom.ui.adapter.FavoriteAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
-class FavoriteFragment : Fragment() {
-    private lateinit var binding: FragmentFavoriteBinding
+@AndroidEntryPoint
+class FavoriteFragment : BaseFragment<FavoriteViewModel, FragmentFavoriteBinding>(
+    FavoriteViewModel::class.java,
+    FragmentFavoriteBinding::inflate
+) {
     private var favoriteAdapter: FavoriteAdapter? = null
-    private var favoriteList: ArrayList<FavoriteEntity> = arrayListOf()
+    private var favoriteList: MutableList<FavoriteEntity> = mutableListOf()
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFavoriteBinding.bind(view)
+    override fun onCreateViewInvoke() {
         setupToolbar()
-//        loadFavoriteProducts()
+        loadFavoriteProducts()
     }
+
 
     private fun setupToolbar() {
         val toolbar = binding.toolbar
@@ -47,18 +39,18 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-//    private fun loadFavoriteProducts() {
-//        val favoriteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
-//        lifecycleScope.launch {
-//            favoriteList = favoriteDao.getFavoriteProducts()
-//            if (favoriteList.isEmpty()) {
-//                showEmptyListView()
-//            } else {
-//                hideEmptyListView()
-//                showFavoriteProducts()
-//            }
-//        }
-//    }
+    private fun loadFavoriteProducts() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val favorites = viewModel.checkProducts()
+            favoriteList = favorites as MutableList<FavoriteEntity>
+            if (favoriteList.isEmpty()) {
+                showEmptyListView()
+            } else {
+                hideEmptyListView()
+                showFavoriteProducts()
+            }
+        }
+    }
 
     private fun showEmptyListView() {
         binding.recyclerView.visibility = View.GONE
@@ -77,24 +69,23 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showFavoriteProducts() {
-//        favoriteAdapter = FavoriteAdapter(favoriteList, ::deleteProduct)
+        favoriteAdapter = FavoriteAdapter(favoriteList, ::deleteProduct)
         binding.recyclerView.adapter = favoriteAdapter
     }
 
-//    private fun deleteProduct(position: Int) {
-//        val deleteDao = FavoriteProductsRoomDB.getInstance(requireContext()).favoriteDao()
-//        lifecycleScope.launch {
-//            if (position >= 0 && position < favoriteList.size) {
-//                val deletedFavoriteEntity = favoriteList[position]
-//                deleteDao.delete(deletedFavoriteEntity)
-//                favoriteList.removeAt(position)
-//                favoriteAdapter?.notifyItemRemoved(position)
-//                if (favoriteList.isEmpty()) {
-//                    showEmptyListView()
-//                } else {
-//                    favoriteAdapter?.notifyItemRangeChanged(position, favoriteList.size)
-//                }
-//            }
-//        }
-//    }
+    private fun deleteProduct(position: Int) {
+        lifecycleScope.launch {
+            if (position >= 0 && position < favoriteList.size) {
+                val deletedFavoriteEntity = favoriteList[position]
+                viewModel.deleteFavWallpaperRoom(deletedFavoriteEntity)
+                favoriteList.removeAt(position)
+                favoriteAdapter?.notifyItemRemoved(position)
+                if (favoriteList.isEmpty()) {
+                    showEmptyListView()
+                } else {
+                    favoriteAdapter?.notifyItemRangeChanged(position, favoriteList.size)
+                }
+            }
+        }
+    }
 }

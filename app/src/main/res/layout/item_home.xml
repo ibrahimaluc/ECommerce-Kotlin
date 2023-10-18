@@ -114,6 +114,7 @@
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_2"
                 android:fontFamily="@font/semi_bold"
+                android:text='@{"₺" + String.format("%.2f", data.price)}'
                 android:textSize="@dimen/sp_12"
                 tools:text="@string/product_price" />
 

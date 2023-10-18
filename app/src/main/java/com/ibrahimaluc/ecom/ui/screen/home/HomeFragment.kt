@@ -4,15 +4,12 @@ package com.ibrahimaluc.ecom.ui.screen.home
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.showToast
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
-import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsDAO
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
 import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
-import com.ibrahimaluc.ecom.data.remote.repository.ProductRepository
 import com.ibrahimaluc.ecom.ui.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

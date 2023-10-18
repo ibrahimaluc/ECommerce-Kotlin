@@ -9,7 +9,7 @@ import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.databinding.ItemFavoriteBinding
 
 class FavoriteAdapter(
-    private val favoriteList: ArrayList<FavoriteEntity>,
+    private var favoriteProductList: List<FavoriteEntity> = emptyList(),
     private val onLikeBtnClickListener: (position: Int) -> Unit,
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
     class FavoriteViewHolder(val binding: ItemFavoriteBinding) :
@@ -31,14 +31,14 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        holder.binding.data = favoriteList[position]
+        holder.binding.data = favoriteProductList[position]
         holder.binding.ibLike.setOnClickListener {
             onLikeBtnClickListener(position)
         }
     }
 
     override fun getItemCount(): Int {
-        return favoriteList.size
+        return favoriteProductList.size
     }
 
 

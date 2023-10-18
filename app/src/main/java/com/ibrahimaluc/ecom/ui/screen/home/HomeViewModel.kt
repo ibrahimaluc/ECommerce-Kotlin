@@ -22,9 +22,6 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
     private val _state: MutableStateFlow<HomeUiState> =
         MutableStateFlow(HomeUiState(isLoading = false))
-
-    private val _favoriteProducts = MutableLiveData<List<FavoriteEntity>>()
-    val favoriteProducts: LiveData<List<FavoriteEntity>> get() = _favoriteProducts
     val state: StateFlow<HomeUiState> get() = _state
 
     init {
