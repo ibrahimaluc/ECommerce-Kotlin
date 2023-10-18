@@ -1,6 +1,7 @@
 package com.ibrahimaluc.ecom.ui.screen.home
 
-import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ibrahimaluc.ecom.core.base.BaseViewModel
 import com.ibrahimaluc.ecom.core.util.Resource
@@ -18,21 +19,16 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val productRepository: ProductRepository,
-    savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
     private val _state: MutableStateFlow<HomeUiState> =
         MutableStateFlow(HomeUiState(isLoading = false))
-    val state: StateFlow<HomeUiState> get() = _state
 
-    private lateinit var favoriteProduct: FavoriteEntity
+    private val _favoriteProducts = MutableLiveData<List<FavoriteEntity>>()
+    val favoriteProducts: LiveData<List<FavoriteEntity>> get() = _favoriteProducts
+    val state: StateFlow<HomeUiState> get() = _state
 
     init {
         getAllProducts()
-        savedStateHandle.get<FavoriteEntity>("favoriteProduct")?.let {
-            this@HomeViewModel.favoriteProduct=it
-            checkFavoriteProduct(it)
-        }
-
     }
 
     private fun getAllProducts() {
@@ -62,24 +58,20 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-     private fun checkFavoriteProduct(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
-        productRepository.checkFavoriteProduct(favoriteProduct.id).collect {
-            val currentState = _state.value
-            _state.value = currentState.copy(isFavProduct = it)
-        }
+    suspend fun fetchFavoriteProducts(): List<FavoriteEntity> {
+        return productRepository.checkProducts()
     }
 
     fun addFavoriteProductRoom(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
         productRepository.addFavoriteProductRoom(favoriteProduct)
-        val currentState = _state.value
-        _state.value = currentState.copy(isFavProduct = true)
+
     }
 
     fun deleteFavWallpaperRoom(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
         productRepository.deleteFavoriteProductRoom(favoriteEntity)
-        val currentState = _state.value
-        _state.value = currentState.copy(isFavProduct = false)
+
     }
+
 }
 
 

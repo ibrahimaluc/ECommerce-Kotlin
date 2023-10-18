@@ -1,6 +1,7 @@
 package com.ibrahimaluc.ecom.ui.screen.home
 
 
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ibrahimaluc.ecom.R
@@ -8,10 +9,13 @@ import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.showToast
 import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteProductsDAO
 import com.ibrahimaluc.ecom.databinding.FragmentHomeBinding
 import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
+import com.ibrahimaluc.ecom.data.remote.repository.ProductRepository
 import com.ibrahimaluc.ecom.ui.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 
@@ -24,11 +28,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 
     private var productList: ArrayList<Product> = arrayListOf()
     private var homeAdapter: HomeAdapter? = null
+    private var favoriteProductList: List<FavoriteEntity> = emptyList()
+
 
     override fun onCreateViewInvoke() {
         collectLatestLifecycleFlow(viewModel.state, ::handleHomeViewState)
         homeAdapter()
         navigateToSearch()
+        checkFavorites()
+
     }
 
     private fun handleHomeViewState(uiState: HomeUiState) {
@@ -36,6 +44,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         uiState.productList?.let {
             productList.clear()
             homeAdapter?.productList = it
+        }
+    }
+
+    private fun checkFavorites() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val favorites = viewModel.fetchFavoriteProducts()
+            favoriteProductList = favorites
+            homeAdapter?.favoriteProductList = favoriteProductList
+            homeAdapter?.updateFavoriteList(favoriteProductList)
         }
     }
 
@@ -47,7 +64,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 
     }
 
-    private fun like(position: Int, product: Product) {
+    private fun like(product: Product) {
 
         val favoriteEntity = FavoriteEntity(
             id = product.id,
@@ -55,23 +72,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
             price = product.price,
             images = product.images
         )
-        if (viewModel.state.value.isFavProduct) {
+        val isFavorite = favoriteProductList.any { it.id == product.id }
+
+        if (!isFavorite) {
             viewModel.addFavoriteProductRoom(favoriteEntity)
-            val viewHolder = binding.recyclerView.findViewHolderForAdapterPosition(position)
-            if (viewHolder is HomeAdapter.HomeViewHolder) {
-                viewHolder.binding.ibLike.setImageResource(R.drawable.icon_favorite_filled)
-            }
-            context?.showToast("added.")
+            context?.showToast("Added to favorites.")
         } else {
             viewModel.deleteFavWallpaperRoom(favoriteEntity)
-            val viewHolder = binding.recyclerView.findViewHolderForAdapterPosition(position)
-            if (viewHolder is HomeAdapter.HomeViewHolder) {
-                viewHolder.binding.ibLike.setImageResource(R.drawable.icon_favorite_passive)
-            }
-            context?.showToast("deleted.")
-
+            context?.showToast("Removed from favorites.")
         }
+        checkFavorites()
     }
+
 
     private fun navigateToSearch() {
         binding.searchButton.setOnClickListener {
