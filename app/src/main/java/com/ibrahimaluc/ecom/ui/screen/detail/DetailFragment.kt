@@ -44,24 +44,25 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
 
     private fun handleDetailViewState(uiState: DetailUiState) {
         setProgressStatus(uiState.isLoading)
+        val product = uiState.productDetail
         with(binding) {
-            data = uiState.productDetail
-            imageAdapter(data)
+            data = product
+            if (product != null) {
+                imageAdapter(product)
+            }
             addBasket()
         }
     }
-    private fun imageAdapter(product: ProductDetailAll?) {
-        product?.images.let {
+    private fun imageAdapter(product: ProductDetailAll) {
+        product.images.let {
             adapter = ImagePagerAdapter(requireContext(), product, ::like)
             binding.viewPager.adapter = adapter
             binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            checkFavorites()
             binding.indicator.setViewPager(binding.viewPager)
             val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.indicator)
             binding.indicator.startAnimation(anim)
+            checkFavorites()
         }
-
-
     }
     private fun checkFavorites() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -90,7 +91,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             viewModel.deleteFavWallpaperRoom(favoriteEntity)
             context?.showToast("Removed from favorites.")
         }
-//        checkFavorites()
+        checkFavorites()
 
     }
 

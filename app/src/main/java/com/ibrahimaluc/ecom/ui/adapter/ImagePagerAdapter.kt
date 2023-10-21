@@ -15,7 +15,7 @@ import com.ibrahimaluc.ecom.databinding.ItemImageCarouselBinding
 
 class ImagePagerAdapter(
     private val context: Context,
-    private val product: ProductDetailAll?,
+    private var product: ProductDetailAll,
     private val onLikeControl: (ProductDetailAll) -> Unit,
 ) : RecyclerView.Adapter<ImagePagerAdapter.ImagePagerViewHolder>() {
 
@@ -36,29 +36,29 @@ class ImagePagerAdapter(
 
     override fun onBindViewHolder(holder: ImagePagerViewHolder, position: Int) {
 
-        val isFavorite = favoriteProductList.any { it.id == (product?.id ?: 0) }
-        println(product?.id)
+        val isFavorite = favoriteProductList.any { it.id == (product.id ) }
+        println(product.id)
         println(favoriteProductList)
         if (isFavorite) {
             holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_filled)
         } else {
             holder.binding.ibLike.setImageResource(R.drawable.icon_favorite_passive)
         }
-//        holder.binding.ibLike.setOnClickListener {
-//            onLikeControl(holder.binding.data)
-//            updateLikeButton(holder.binding, !isFavorite)
-//        }
+        holder.binding.ibLike.setOnClickListener {
+            onLikeControl(product)
+            updateLikeButton(holder.binding, !isFavorite)
+        }
         image(position, holder)
 
 
     }
 
     override fun getItemCount(): Int {
-        return product?.images?.size ?: 0
+        return product.images.size
     }
 
     private fun image(position: Int, holder: ImagePagerViewHolder) {
-        val imageUrl = product?.images?.get(position)
+        val imageUrl = product.images[position]
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.product_placeholder_gray)
         Glide.with(context)
