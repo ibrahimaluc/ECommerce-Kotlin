@@ -36,7 +36,7 @@ class ImagePagerAdapter(
 
     override fun onBindViewHolder(holder: ImagePagerViewHolder, position: Int) {
 
-        val isFavorite = favoriteProductList.any { it.id == (product.id ) }
+        val isFavorite = favoriteProductList.any { it.id == (product.id) }
         println(product.id)
         println(favoriteProductList)
         if (isFavorite) {

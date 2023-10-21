@@ -53,6 +53,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             addBasket()
         }
     }
+
     private fun imageAdapter(product: ProductDetailAll) {
         product.images.let {
             adapter = ImagePagerAdapter(requireContext(), product, ::like)
@@ -64,6 +65,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             checkFavorites()
         }
     }
+
     private fun checkFavorites() {
         viewLifecycleOwner.lifecycleScope.launch {
             val favorites = viewModel.fetchFavoriteProducts()
