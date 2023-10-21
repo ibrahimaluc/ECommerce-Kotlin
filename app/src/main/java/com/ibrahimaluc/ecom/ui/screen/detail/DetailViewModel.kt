@@ -3,6 +3,7 @@ package com.ibrahimaluc.ecom.ui.screen.detail
 import androidx.lifecycle.viewModelScope
 import com.ibrahimaluc.ecom.core.base.BaseViewModel
 import com.ibrahimaluc.ecom.core.util.Resource
+import com.ibrahimaluc.ecom.data.local.favorite.FavoriteEntity
 import com.ibrahimaluc.ecom.data.remote.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +28,7 @@ class DetailViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         _state.value = DetailUiState(
-                            productDetail = result.data,
+                            productDetail = result.data?.productDetail,
                             isLoading = false
                         )
                     }
@@ -46,6 +47,19 @@ class DetailViewModel @Inject constructor(
                 }
             }.launchIn(this)
         }
+    }
+
+    suspend fun fetchFavoriteProducts(): List<FavoriteEntity> {
+        return productRepository.checkProducts()
+    }
+
+    fun addFavoriteProductRoom(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
+        productRepository.addFavoriteProductRoom(favoriteProduct)
+
+    }
+
+    fun deleteFavWallpaperRoom(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
+        productRepository.deleteFavoriteProductRoom(favoriteEntity)
 
     }
 }

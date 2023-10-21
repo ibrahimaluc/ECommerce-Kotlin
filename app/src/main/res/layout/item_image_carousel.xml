@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="data"
-            type="com.ibrahimaluc.ecom.data.remote.model.productDetail.ProductDetail" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.ibrahimaluc.ecom.data.remote.model.productDetail.ProductDetail" />
+            type="com.ibrahimaluc.ecom.data.remote.model.productDetail.ProductDetailAll" />
 
     </data>
 
@@ -72,6 +72,7 @@
                 android:layout_height="@dimen/dp_24"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_16"
+                android:contentDescription="@string/star"
                 android:src="@drawable/icon_star" />
 
             <TextView
@@ -115,7 +116,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/inter_medium"
-                android:text="@{data.productDetail.seller}"
+                android:text="@{data.seller}"
                 android:textSize="@dimen/sp_12"
                 tools:text="@string/seller" />
 
@@ -129,7 +130,7 @@
             android:layout_marginTop="@dimen/dp_8"
             android:layout_marginEnd="@dimen/dp_16"
             android:fontFamily="@font/inter_regular"
-            android:text="@{data.productDetail.name}"
+            android:text="@{data.name}"
             android:textSize="@dimen/sp_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_1"
             android:fontFamily="@font/inter_semi_bold"
-            android:text="@{'₺' +data.productDetail.price.toString()}"
+            android:text='@{"₺" + String.format("%.2f",data.price)}'
             android:textSize="@dimen/sp_16"
             app:layout_constraintStart_toStartOf="@id/tv_product_name"
             app:layout_constraintTop_toBottomOf="@id/tv_product_name"
