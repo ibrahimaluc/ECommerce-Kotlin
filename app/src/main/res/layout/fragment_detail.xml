@@ -83,8 +83,9 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_toEndOf="@id/iv_star"
                 android:fontFamily="@font/semi_bold"
-                android:text="@string/star_point"
-                android:textSize="@dimen/sp_16" />
+                android:text="@{String.valueOf(data.point)}"
+                android:textSize="@dimen/sp_16"
+                tools:text="@string/star_point" />
 
             <TextView
                 android:id="@+id/tv_review_value"
@@ -94,7 +95,8 @@
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_toEndOf="@id/tv_rating"
                 android:fontFamily="@font/inter_regular"
-                android:text="@string/review_value"
+                android:text='@{"(" + String.valueOf(data.review) + ")"}'
+                tools:text="@string/review_value"
                 android:textColor="@color/light_gray"
                 android:textSize="@dimen/sp_12" />
 

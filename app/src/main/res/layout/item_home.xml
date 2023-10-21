@@ -86,7 +86,7 @@
                     android:layout_marginBottom="@dimen/dp_2"
                     android:layout_toEndOf="@id/iv_star"
                     android:fontFamily="@font/semi_bold"
-                    android:text="@string/star_point"
+                    android:text="@{String.valueOf(data.point)}"
                     android:textSize="@dimen/sp_8" />
 
             </RelativeLayout>

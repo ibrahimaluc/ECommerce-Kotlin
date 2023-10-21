@@ -11,5 +11,7 @@ data class Product(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: Double
+    val price: Double,
+    @SerializedName("point")
+    val point :Float,
 )
