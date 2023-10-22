@@ -20,7 +20,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/backButton"
+            android:id="@+id/bt_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
@@ -38,14 +38,14 @@
             android:background="@drawable/search_view_background"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/backButton"
+            app:layout_constraintStart_toEndOf="@id/bt_back"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="@string/search"
             app:searchIcon="@null"
             app:theme="@style/SearchViewStyle" />
 
         <TextView
-            android:id="@+id/searchRelated"
+            android:id="@+id/tv_search_related"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_24"

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/bottomNav"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
             app:navGraph="@navigation/my_nav" />
 
         <ProgressBar
-            android:id="@+id/pbLoading"
+            android:id="@+id/pb_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="@dimen/dp_4"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
+            android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_60"
             android:background="@drawable/custom_button_background"

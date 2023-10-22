@@ -83,7 +83,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 
 
     private fun navigateToSearch() {
-        binding.searchButton.setOnClickListener {
+        binding.btSearch.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
             findNavController().navigate(action)
         }

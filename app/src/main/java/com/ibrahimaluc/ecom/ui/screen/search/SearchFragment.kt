@@ -80,7 +80,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
 
 
     private fun backButton() {
-        binding.backButton.setOnClickListener {
+        binding.btBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }

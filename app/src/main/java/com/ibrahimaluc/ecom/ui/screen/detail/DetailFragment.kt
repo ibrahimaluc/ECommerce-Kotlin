@@ -98,7 +98,7 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     }
 
     private fun navigateToSearch() {
-        binding.searchButton.setOnClickListener {
+        binding.btSearch.setOnClickListener {
             val action = DetailFragmentDirections.actionDetailFragmentToSearchFragment()
             findNavController().navigate(action)
         }
