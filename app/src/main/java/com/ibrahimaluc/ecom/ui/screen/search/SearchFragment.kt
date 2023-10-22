@@ -32,7 +32,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         collectLatestLifecycleFlow(viewModel.state, ::handleSearchViewState)
         searchAdapter()
         backButton()
-
     }
 
     override fun onQueryTextSubmit(searchQuery: String?): Boolean {
