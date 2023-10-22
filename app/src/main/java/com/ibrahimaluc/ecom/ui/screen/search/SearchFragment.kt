@@ -4,7 +4,6 @@ package com.ibrahimaluc.ecom.ui.screen.search
 import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ibrahimaluc.ecom.R
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.hideKeyboard
@@ -32,10 +31,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         searchView.setOnQueryTextListener(this)
         collectLatestLifecycleFlow(viewModel.state, ::handleSearchViewState)
         searchAdapter()
-        inItClickListener()
         backButton()
-        searchView.requestFocus()
-        showKeyboard(searchView)
+
     }
 
     override fun onQueryTextSubmit(searchQuery: String?): Boolean {
@@ -80,20 +77,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
     private fun navigateToDetail(id: Int) {
         val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(id)
         findNavController().navigate(action)
-    }
-
-    private fun inItClickListener() = with(binding) {
-        val searchView = binding.searchView
-        searchView.setOnCloseListener {
-            searchRelated.text = requireContext().getString(R.string.latest_searched)
-            searchView.setQuery("", false)
-            searchList.clear()
-            searchAdapter?.searchList = emptyList()
-            searchAdapter?.notifyDataSetChanged()
-            binding.searchControl = false
-            hideKeyboard()
-            true
-        }
     }
 
 
