@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.screen.search.SearchFragment">
+
+    <data>
+
+        <variable
+            name="searchControl"
+            type="Boolean"
+            android:value="false" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_28"
+            android:contentDescription="@string/back_button"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@drawable/search_view_background"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bt_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="@string/search"
+            app:searchIcon="@null"
+            app:theme="@style/SearchViewStyle" />
+
+        <TextView
+            android:id="@+id/tv_search_related"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_16"
+            android:fontFamily="@font/semi_bold"
+            android:text="@string/search_related"
+            android:visibility="@{searchControl ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_36"
+            android:layout_marginEnd="@dimen/dp_24"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
+            tools:listitem="@layout/item_search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

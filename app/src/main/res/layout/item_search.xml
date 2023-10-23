@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.ibrahimaluc.ecom.data.remote.model.productSearch.SearchResult" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/productCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:fontFamily="@font/inter_regular"
+            android:text="@{data.name}"
+            tools:text="@string/product_name" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_margin="@dimen/dp_4"
+            android:background="@color/light_gray" />
+
+
+    </LinearLayout>
+</layout>

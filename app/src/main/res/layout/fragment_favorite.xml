@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="visibilityComponent"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.screen.favorite.FavoriteFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/MyToolbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back_arrow"
+            app:title="@string/title_favorite_products" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{visibilityComponent ? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:contentDescription="@string/recycler_view_description"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:spanCount="2"
+            tools:listitem="@layout/item_favorite" />
+
+        <include
+            android:id="@+id/item_favorite_empty"
+            layout="@layout/item_empty_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
