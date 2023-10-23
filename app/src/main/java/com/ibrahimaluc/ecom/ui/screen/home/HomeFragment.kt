@@ -22,7 +22,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
     FragmentHomeBinding::inflate
 ) {
 
-
     private var productList: ArrayList<Product> = arrayListOf()
     private var homeAdapter: HomeAdapter? = null
     private var favoriteProductList: List<FavoriteEntity> = emptyList()
@@ -33,7 +32,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         homeAdapter()
         navigateToSearch()
         checkFavorites()
-
     }
 
     private fun handleHomeViewState(uiState: HomeUiState) {
@@ -53,16 +51,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         }
     }
 
-
     private fun homeAdapter() = with(binding) {
         homeAdapter = HomeAdapter(::navigateToDetail, ::like)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = homeAdapter
-
     }
 
     private fun like(product: Product) {
-
         val favoriteEntity = FavoriteEntity(
             id = product.id,
             name = product.name,
@@ -81,19 +76,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
         checkFavorites()
     }
 
-
-
     private fun navigateToSearch() {
         binding.btSearch.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
             findNavController().navigate(action)
         }
-
     }
 
-    private fun navigateToDetail(id: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
-        findNavController().navigate(action)
+    private fun navigateToDetail(id: Int?) {
+        id?.let {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }
 

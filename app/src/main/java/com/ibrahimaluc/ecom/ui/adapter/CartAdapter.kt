@@ -1,21 +1,12 @@
 package com.ibrahimaluc.ecom.ui.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ibrahimaluc.ecom.R
-import com.ibrahimaluc.ecom.data.local.cart.CartDatabase
 import com.ibrahimaluc.ecom.data.local.cart.CartEntity
 import com.ibrahimaluc.ecom.databinding.ItemCartBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlin.reflect.KSuspendFunction1
 
 class CartAdapter(
     private val cartList: ArrayList<CartEntity>,
@@ -53,6 +44,4 @@ class CartAdapter(
     override fun getItemCount(): Int {
         return cartList.size
     }
-
-
 }

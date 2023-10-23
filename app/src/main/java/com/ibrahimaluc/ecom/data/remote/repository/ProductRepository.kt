@@ -49,11 +49,6 @@ class ProductRepository(
         return favoriteProductsDAO.getFavoriteProducts()
     }
 
-    fun checkFavoriteProduct(id: Int): Flow<Boolean> = callbackFlow {
-        trySend(favoriteProductsDAO.getFavoriteById(id) != null)
-        awaitClose { channel.close() }
-    }
-
     suspend fun addFavoriteProductRoom(favProduct: FavoriteEntity) =
         favoriteProductsDAO.addFavorite(favProduct)
 

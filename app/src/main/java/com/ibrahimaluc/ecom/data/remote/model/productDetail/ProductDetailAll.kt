@@ -5,25 +5,25 @@ import com.google.gson.annotations.SerializedName
 
 data class ProductDetailAll(
     @SerializedName("brand")
-    val brand: String,
+    val brand: String?,
     @SerializedName("categories")
-    val categories: String,
+    val categories: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("features")
-    val features: String,
+    val features: String?,
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("images")
-    var images: List<String>,
+    var images: List<String>?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("price")
-    val price: Double,
+    val price: Double?,
     @SerializedName("seller")
-    val seller: String,
+    val seller: String?,
     @SerializedName("point")
-    val point :Float,
+    val point :Float?,
     @SerializedName("review")
-    val review:Int
+    val review:Int?
 )

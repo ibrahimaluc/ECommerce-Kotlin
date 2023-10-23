@@ -32,7 +32,6 @@ abstract class BaseFragment<VM : ViewModel, DB : ViewDataBinding>(
     protected val navController by lazy {
         activity?.let {
             Navigation.findNavController(it, R.id.nav_host_fragmentContainerView)
-
         }
     }
 
@@ -50,7 +49,6 @@ abstract class BaseFragment<VM : ViewModel, DB : ViewDataBinding>(
         _binding = inflateLayout(layoutInflater, container, false)
         onCreateViewInvoke()
         return binding.root
-
     }
 
     override fun onDestroy() {

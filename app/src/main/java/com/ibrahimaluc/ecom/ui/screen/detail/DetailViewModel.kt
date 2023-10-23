@@ -21,7 +21,6 @@ class DetailViewModel @Inject constructor(
         MutableStateFlow(DetailUiState(isLoading = false))
     val state: StateFlow<DetailUiState> get() = _state
 
-
     fun getAllDetail(product_id: String) {
         job = viewModelScope.launch {
             productRepository.getProductDetail(product_id).onEach { result ->
@@ -55,11 +54,9 @@ class DetailViewModel @Inject constructor(
 
     fun addFavoriteProductRoom(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
         productRepository.addFavoriteProductRoom(favoriteProduct)
-
     }
 
     fun deleteFavWallpaperRoom(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
         productRepository.deleteFavoriteProductRoom(favoriteEntity)
-
     }
 }

@@ -53,6 +53,4 @@ object RetrofitModule {
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .build()
         .create(ProductService::class.java)
-
-
 }

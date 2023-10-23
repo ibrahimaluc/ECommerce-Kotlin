@@ -7,20 +7,15 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 
-
 @Parcelize
 @Entity(tableName = "favorite")
 data class FavoriteEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-
+    val id: Int?,
     @ColumnInfo(name = "name")
-    val name: String,
-
+    val name: String?,
     @ColumnInfo(name = "price")
-    val price: Double,
-
+    val price: Double?,
     @ColumnInfo(name = "images")
-    val images: String
-
-    ) : Parcelable
+    val images: String?
+) : Parcelable

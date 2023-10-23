@@ -1,7 +1,6 @@
 package com.ibrahimaluc.ecom.data.local.cart
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 @Entity(tableName = "cart", primaryKeys = ["id", "size"])
 data class CartEntity(

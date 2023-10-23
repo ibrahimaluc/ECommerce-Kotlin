@@ -18,6 +18,5 @@ object RepositoryModule {
     @Singleton
     fun provideProductRepository(
         productService: ProductService, favoriteProductsDAO: FavoriteProductsDAO
-
     ): ProductRepository = ProductRepository(productService, favoriteProductsDAO)
 }

@@ -13,7 +13,7 @@ import com.ibrahimaluc.ecom.data.remote.model.productHome.Product
 
 
 class HomeAdapter(
-    private val clickControl: (Int) -> Unit,
+    private val clickControl: (Int?) -> Unit,
     private val onLikeControl: (Product) -> Unit
 ) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {

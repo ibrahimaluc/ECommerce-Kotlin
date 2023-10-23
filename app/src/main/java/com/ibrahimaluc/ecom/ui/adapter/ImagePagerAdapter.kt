@@ -23,7 +23,6 @@ class ImagePagerAdapter(
 
     var favoriteProductList: List<FavoriteEntity> = emptyList()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePagerViewHolder {
         return ImagePagerViewHolder(
             ItemImageCarouselBinding.inflate(
@@ -35,7 +34,6 @@ class ImagePagerAdapter(
     }
 
     override fun onBindViewHolder(holder: ImagePagerViewHolder, position: Int) {
-
         val isFavorite = favoriteProductList.any { it.id == (product.id) }
         println(product.id)
         println(favoriteProductList)
@@ -49,16 +47,14 @@ class ImagePagerAdapter(
             updateLikeButton(holder.binding, !isFavorite)
         }
         image(position, holder)
-
-
     }
 
     override fun getItemCount(): Int {
-        return product.images.size
+        return product.images?.size ?: 0
     }
 
     private fun image(position: Int, holder: ImagePagerViewHolder) {
-        val imageUrl = product.images[position]
+        val imageUrl = product.images?.get(position)
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.product_placeholder_gray)
         Glide.with(context)

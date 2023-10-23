@@ -1,7 +1,6 @@
 package com.ibrahimaluc.ecom.ui.screen.favorite
 
 
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
@@ -23,12 +22,10 @@ class FavoriteFragment : BaseFragment<FavoriteViewModel, FragmentFavoriteBinding
     private var favoriteAdapter: FavoriteAdapter? = null
     private var favoriteList: MutableList<FavoriteEntity> = mutableListOf()
 
-
     override fun onCreateViewInvoke() {
         setupToolbar()
         loadFavoriteProducts()
     }
-
 
     private fun setupToolbar() {
         val toolbar = binding.toolbar
@@ -53,8 +50,7 @@ class FavoriteFragment : BaseFragment<FavoriteViewModel, FragmentFavoriteBinding
     }
 
     private fun showEmptyListView() {
-        binding.recyclerView.visibility = View.GONE
-        binding.itemFavoriteEmpty.visibility = View.VISIBLE
+        binding.visibilityComponent = false
         val btnGoHome = view?.findViewById<AppCompatButton>(R.id.btn_go_home)
         btnGoHome?.setOnClickListener {
             val action = FavoriteFragmentDirections.actionFavoriteFragmentToHomeFragment()
@@ -62,10 +58,8 @@ class FavoriteFragment : BaseFragment<FavoriteViewModel, FragmentFavoriteBinding
         }
     }
 
-
     private fun hideEmptyListView() {
-        binding.itemFavoriteEmpty.visibility = View.GONE
-        binding.recyclerView.visibility = View.VISIBLE
+        binding.visibilityComponent = true
     }
 
     private fun showFavoriteProducts() {

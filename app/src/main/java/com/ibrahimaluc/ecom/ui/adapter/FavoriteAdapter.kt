@@ -40,8 +40,4 @@ class FavoriteAdapter(
     override fun getItemCount(): Int {
         return favoriteProductList.size
     }
-
-
-
-
 }

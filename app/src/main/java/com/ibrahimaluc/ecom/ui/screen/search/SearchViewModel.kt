@@ -21,7 +21,6 @@ class SearchViewModel @Inject constructor(
         MutableStateFlow(SearchUiState(isLoading = false))
     val state: StateFlow<SearchUiState> get() = _state
 
-
     fun getSearchResults(search_query: String) {
         job = viewModelScope.launch {
             job = viewModelScope.launch {
@@ -48,10 +47,8 @@ class SearchViewModel @Inject constructor(
                     }
                 }.launchIn(this)
             }
-
         }
     }
-
 }
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.screen.home.HomeFragment">
 
-    <data></data>
+    <data />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

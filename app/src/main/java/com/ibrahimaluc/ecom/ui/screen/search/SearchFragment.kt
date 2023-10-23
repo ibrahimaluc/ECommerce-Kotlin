@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibrahimaluc.ecom.core.base.BaseFragment
 import com.ibrahimaluc.ecom.core.extensions.collectLatestLifecycleFlow
 import com.ibrahimaluc.ecom.core.extensions.hideKeyboard
-import com.ibrahimaluc.ecom.core.extensions.showKeyboard
 import com.ibrahimaluc.ecom.databinding.FragmentSearchBinding
 import com.ibrahimaluc.ecom.data.remote.model.productSearch.SearchResult
 import com.ibrahimaluc.ecom.ui.adapter.SearchAdapter
@@ -21,10 +20,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
     FragmentSearchBinding::inflate
 ), SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
-
     private var searchList: ArrayList<SearchResult> = arrayListOf()
     private var searchAdapter: SearchAdapter? = null
-
 
     override fun onCreateViewInvoke() {
         val searchView = binding.searchView
@@ -57,7 +54,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         return true
     }
 
-
     private fun handleSearchViewState(uiState: SearchUiState) {
         setProgressStatus(uiState.isLoading)
         uiState.searchList?.let {
@@ -70,7 +66,6 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         searchAdapter = SearchAdapter(::navigateToDetail)
         searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         searchRecyclerView.adapter = searchAdapter
-
     }
 
     private fun navigateToDetail(id: Int) {
@@ -78,14 +73,9 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         findNavController().navigate(action)
     }
 
-
     private fun backButton() {
         binding.btBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
-
-
 }
-
-

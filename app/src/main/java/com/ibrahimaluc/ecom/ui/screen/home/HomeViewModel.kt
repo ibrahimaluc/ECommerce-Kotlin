@@ -1,7 +1,5 @@
 package com.ibrahimaluc.ecom.ui.screen.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ibrahimaluc.ecom.core.base.BaseViewModel
 import com.ibrahimaluc.ecom.core.util.Resource
@@ -61,15 +59,9 @@ class HomeViewModel @Inject constructor(
 
     fun addFavoriteProductRoom(favoriteProduct: FavoriteEntity) = viewModelScope.launch {
         productRepository.addFavoriteProductRoom(favoriteProduct)
-
     }
 
     fun deleteFavWallpaperRoom(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
         productRepository.deleteFavoriteProductRoom(favoriteEntity)
-
     }
-
 }
-
-
-

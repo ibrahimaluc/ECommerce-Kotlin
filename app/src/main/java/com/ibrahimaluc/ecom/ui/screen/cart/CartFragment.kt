@@ -24,7 +24,6 @@ class CartFragment : Fragment() {
     private var cartAdapter: CartAdapter? = null
     private var cartList: ArrayList<CartEntity> = arrayListOf()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,8 +37,6 @@ class CartFragment : Fragment() {
         setupToolbar()
         loadCartProducts()
         showCartDialog()
-
-
     }
 
     private fun setupToolbar() {
@@ -65,26 +62,16 @@ class CartFragment : Fragment() {
     }
 
     private fun showEmptyListView() {
-        binding.itemCartEmpty.visibility = View.VISIBLE
-        binding.rvCartList.visibility = View.GONE
-        binding.llCart.visibility = View.GONE
-        binding.btCart.visibility = View.GONE
-
+        binding.visibilityComponent = true
         val btnGoHome = view?.findViewById<AppCompatButton>(R.id.btn_go_home)
         btnGoHome?.setOnClickListener {
             val action = CartFragmentDirections.actionCartFragmentToHomeFragment()
             findNavController().navigate(action)
         }
-
     }
 
     private fun hideEmptyListView() {
-        binding.itemCartEmpty.visibility = View.GONE
-        binding.rvCartList.visibility = View.VISIBLE
-        binding.llCart.visibility = View.VISIBLE
-        binding.btCart.visibility = View.VISIBLE
-
-
+        binding.visibilityComponent = false
     }
 
     private fun showCartProducts() {
@@ -110,13 +97,11 @@ class CartFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun plusOrMinus(position: Int, change: Int) {
         val cartItem = cartList[position]
         val newQuantity = cartItem.quantity + change
-
         if (newQuantity >= 1) {
             cartItem.quantity = newQuantity
             updateCartItem(position, cartItem)

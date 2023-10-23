@@ -19,12 +19,12 @@ interface ProductService {
     @GET("api/product/search/")
     @Headers("Authorization: ${BuildConfig.TOKEN}")
     suspend fun getSearchResults(
-        @Query("search_query") search_query: String
+        @Query("search_query") searchQuery: String
     ): ProductSearch
 
     @GET("api/product/{product_id}")
     @Headers("Authorization: ${BuildConfig.TOKEN}")
     suspend fun getProductDetail(
-        @Path("product_id") product_id: String
+        @Path("product_id") productId: String
     ): ProductDetail
 }

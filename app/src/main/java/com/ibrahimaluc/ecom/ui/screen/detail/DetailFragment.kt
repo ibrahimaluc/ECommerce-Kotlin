@@ -31,15 +31,12 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     private var size: String = ""
     private var favoriteProductList: List<FavoriteEntity> = emptyList()
 
-
     override fun onCreateViewInvoke() {
         collectLatestLifecycleFlow(viewModel.state, ::handleDetailViewState)
         val productId = args.id.toString()
         viewModel.getAllDetail(productId)
         sizeListener()
         navigateToSearch()
-
-
     }
 
     private fun handleDetailViewState(uiState: DetailUiState) {
@@ -75,17 +72,14 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         }
     }
 
-
     private fun like(product: ProductDetailAll) {
-
         val favoriteEntity = FavoriteEntity(
             id = product.id,
             name = product.name,
             price = product.price,
-            images = product.images[0]
+            images = product.images?.get(0)
         )
         val isFavorite = favoriteProductList.any { it.id == product.id }
-
         if (!isFavorite) {
             viewModel.addFavoriteProductRoom(favoriteEntity)
             context?.showToast("Added to favorites.")
@@ -94,7 +88,6 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
             context?.showToast("Removed from favorites.")
         }
         checkFavorites()
-
     }
 
     private fun navigateToSearch() {
@@ -104,21 +97,18 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
         }
     }
 
-    private fun sizeListener() {
-        binding.btnSizeS.setOnClickListener {
-            selectSizeButton(binding.btnSizeS)
+    private fun sizeListener() = with(binding) {
+        btnSizeS.setOnClickListener {
+            selectSizeButton(btnSizeS)
         }
-
-        binding.btnSizeM.setOnClickListener {
-            selectSizeButton(binding.btnSizeM)
+        btnSizeM.setOnClickListener {
+            selectSizeButton(btnSizeM)
         }
-
-        binding.btnSizeL.setOnClickListener {
-            selectSizeButton(binding.btnSizeL)
+        btnSizeL.setOnClickListener {
+            selectSizeButton(btnSizeL)
         }
-
-        binding.btnSizeXl.setOnClickListener {
-            selectSizeButton(binding.btnSizeXl)
+        btnSizeXl.setOnClickListener {
+            selectSizeButton(btnSizeXl)
         }
     }
 
@@ -163,12 +153,10 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
                             requireContext(),
                             "Added to your basket.",
                             Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        ).show()
                     }
                 }
             }
         }
     }
 }
-

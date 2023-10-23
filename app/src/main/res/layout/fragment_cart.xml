@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="visibilityComponent"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cL"
@@ -33,6 +42,7 @@
                 android:id="@+id/rv_cart_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="@id/toolbar"
                 tools:listitem="@layout/item_cart" />
 
@@ -46,6 +56,7 @@
             android:layout_marginTop="@dimen/dp_36"
             android:layout_marginEnd="@dimen/dp_16"
             android:orientation="vertical"
+            android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/bt_cart"
             app:layout_constraintTop_toBottomOf="@id/nSV">
 
@@ -181,6 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_16"
             android:text="@string/complete_the_order"
+            android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_cart" />
 
@@ -189,7 +201,7 @@
             layout="@layout/item_empty_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="@{visibilityComponent ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
