@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.screen.home.HomeFragment">
 
-    <data />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cL"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/dp_16">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_search"
+            android:id="@+id/buttonSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_8"
@@ -38,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_search"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
             app:spanCount="2"
             tools:listitem="@layout/item_home" />
 

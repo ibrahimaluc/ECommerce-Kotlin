@@ -91,39 +91,39 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentDetailBinding>(
     }
 
     private fun navigateToSearch() {
-        binding.btSearch.setOnClickListener {
+        binding.buttonSearch.setOnClickListener {
             val action = DetailFragmentDirections.actionDetailFragmentToSearchFragment()
             findNavController().navigate(action)
         }
     }
 
     private fun sizeListener() = with(binding) {
-        btnSizeS.setOnClickListener {
-            selectSizeButton(btnSizeS)
+        buttonSizeS.setOnClickListener {
+            selectSizeButton(buttonSizeS)
         }
-        btnSizeM.setOnClickListener {
-            selectSizeButton(btnSizeM)
+        buttonSizeM.setOnClickListener {
+            selectSizeButton(buttonSizeM)
         }
-        btnSizeL.setOnClickListener {
-            selectSizeButton(btnSizeL)
+        buttonSizeL.setOnClickListener {
+            selectSizeButton(buttonSizeL)
         }
-        btnSizeXl.setOnClickListener {
-            selectSizeButton(btnSizeXl)
+        buttonSizeXL.setOnClickListener {
+            selectSizeButton(buttonSizeXL)
         }
     }
 
     private fun selectSizeButton(selectedButton: AppCompatButton) {
-        binding.btnSizeS.isSelected = false
-        binding.btnSizeM.isSelected = false
-        binding.btnSizeL.isSelected = false
-        binding.btnSizeXl.isSelected = false
+        binding.buttonSizeS.isSelected = false
+        binding.buttonSizeM.isSelected = false
+        binding.buttonSizeL.isSelected = false
+        binding.buttonSizeXL.isSelected = false
         selectedButton.isSelected = true
         size = selectedButton.text.toString()
     }
 
     private fun addBasket() {
         val product = binding.data
-        binding.btAddToCart.setOnClickListener {
+        binding.buttonAddToCart.setOnClickListener {
             if (size.isEmpty()) {
                 Toast.makeText(requireContext(), "Please select your size.", Toast.LENGTH_SHORT)
                     .show()

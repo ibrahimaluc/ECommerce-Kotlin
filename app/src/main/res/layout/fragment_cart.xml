@@ -14,14 +14,14 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cL"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.screen.cart.CartFragment">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolBar"
             style="@style/MyToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -31,15 +31,15 @@
             app:title="@string/title_cart_products" />
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nSV"
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_320"
             android:layout_margin="@dimen/dp_16"
-            app:layout_constraintBottom_toTopOf="@id/ll_cart"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            app:layout_constraintBottom_toTopOf="@id/linearLayoutCart"
+            app:layout_constraintTop_toBottomOf="@id/toolBar">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_cart_list"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
@@ -49,7 +49,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
-            android:id="@+id/ll_cart"
+            android:id="@+id/linearLayoutCart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0"
             android:layout_marginStart="@dimen/dp_16"
@@ -57,8 +57,8 @@
             android:layout_marginEnd="@dimen/dp_16"
             android:orientation="vertical"
             android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toTopOf="@id/bt_cart"
-            app:layout_constraintTop_toBottomOf="@id/nSV">
+            app:layout_constraintBottom_toTopOf="@id/buttonCart"
+            app:layout_constraintTop_toBottomOf="@id/nestedScrollView">
 
 
             <LinearLayout
@@ -67,7 +67,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_items"
+                    android:id="@+id/tvItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -75,7 +75,7 @@
                     android:text="@string/items" />
 
                 <TextView
-                    android:id="@+id/tv_items_value"
+                    android:id="@+id/tvItemsValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -97,7 +97,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_shipping"
+                    android:id="@+id/tvShipping"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -105,7 +105,7 @@
                     android:text="@string/shipping" />
 
                 <TextView
-                    android:id="@+id/tv_shipping_value"
+                    android:id="@+id/tvShippingValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -127,7 +127,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_tax"
+                    android:id="@+id/tvTax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -135,7 +135,7 @@
                     android:text="@string/tax" />
 
                 <TextView
-                    android:id="@+id/tv_tax_value"
+                    android:id="@+id/tvTaxValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -157,7 +157,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_total"
+                    android:id="@+id/tvTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -165,7 +165,7 @@
                     android:text="@string/total" />
 
                 <TextView
-                    android:id="@+id/tv_total_value"
+                    android:id="@+id/tvTotalValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -186,7 +186,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_cart"
+            android:id="@+id/buttonCart"
             style="@style/CustomOrderButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -194,10 +194,10 @@
             android:text="@string/complete_the_order"
             android:visibility="@{visibilityComponent ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_cart" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutCart" />
 
         <include
-            android:id="@+id/item_cart_empty"
+            android:id="@+id/itemCartEmpty"
             layout="@layout/item_empty_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -207,7 +207,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

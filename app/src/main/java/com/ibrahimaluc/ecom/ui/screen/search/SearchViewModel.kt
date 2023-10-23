@@ -21,10 +21,10 @@ class SearchViewModel @Inject constructor(
         MutableStateFlow(SearchUiState(isLoading = false))
     val state: StateFlow<SearchUiState> get() = _state
 
-    fun getSearchResults(search_query: String) {
+    fun getSearchResults(searchQuery: String) {
         job = viewModelScope.launch {
             job = viewModelScope.launch {
-                productRepository.getSearchResults(search_query).onEach { result ->
+                productRepository.getSearchResults(searchQuery).onEach { result ->
                     when (result) {
                         is Resource.Success -> {
                             _state.value = SearchUiState(

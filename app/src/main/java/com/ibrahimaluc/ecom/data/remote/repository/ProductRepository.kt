@@ -25,9 +25,9 @@ class ProductRepository(
         awaitClose { channel.close() }
     }
 
-    fun getSearchResults(search_query: String): Flow<Resource<ProductSearch>> = callbackFlow {
+    fun getSearchResults(searchQuery: String): Flow<Resource<ProductSearch>> = callbackFlow {
         try {
-            trySend(Resource.Success(productService.getSearchResults(search_query)))
+            trySend(Resource.Success(productService.getSearchResults(searchQuery)))
         } catch (e: Exception) {
             trySend(Resource.Error(e.message.orEmpty()))
         }
@@ -35,9 +35,9 @@ class ProductRepository(
         awaitClose { channel.close() }
     }
 
-    fun getProductDetail(product_id: String): Flow<Resource<ProductDetail>> = callbackFlow {
+    fun getProductDetail(productId: String): Flow<Resource<ProductDetail>> = callbackFlow {
         try {
-            trySend(Resource.Success(productService.getProductDetail(product_id)))
+            trySend(Resource.Success(productService.getProductDetail(productId)))
         } catch (e: Exception) {
             trySend(Resource.Error(e.message.orEmpty()))
         }

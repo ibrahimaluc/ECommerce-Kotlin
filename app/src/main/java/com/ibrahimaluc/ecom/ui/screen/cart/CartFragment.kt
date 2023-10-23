@@ -40,7 +40,7 @@ class CartFragment : Fragment() {
     }
 
     private fun setupToolbar() {
-        val toolbar = binding.toolbar
+        val toolbar = binding.toolBar
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener {
@@ -63,7 +63,7 @@ class CartFragment : Fragment() {
 
     private fun showEmptyListView() {
         binding.visibilityComponent = true
-        val btnGoHome = view?.findViewById<AppCompatButton>(R.id.btn_go_home)
+        val btnGoHome = view?.findViewById<AppCompatButton>(R.id.buttonCartToHome)
         btnGoHome?.setOnClickListener {
             val action = CartFragmentDirections.actionCartFragmentToHomeFragment()
             findNavController().navigate(action)
@@ -76,8 +76,8 @@ class CartFragment : Fragment() {
 
     private fun showCartProducts() {
         cartAdapter = CartAdapter(cartList, ::deleteToCart, ::minus, ::plus)
-        binding.rvCartList.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvCartList.adapter = cartAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = cartAdapter
         calculateCost()
     }
 
@@ -110,9 +110,9 @@ class CartFragment : Fragment() {
 
     private fun updateCartItem(position: Int, cartItem: CartEntity) {
         cartAdapter?.notifyItemChanged(position)
-        val viewHolder = binding.rvCartList.findViewHolderForAdapterPosition(position)
+        val viewHolder = binding.recyclerView.findViewHolderForAdapterPosition(position)
         if (viewHolder is CartAdapter.CartViewHolder) {
-            viewHolder.binding.quantity.text = cartItem.quantity.toString()
+            viewHolder.binding.tvQuantity.text = cartItem.quantity.toString()
         }
         calculateCost()
     }
@@ -138,14 +138,14 @@ class CartFragment : Fragment() {
         val tax = totalPrice * 0.20
         val grandTotal = totalPrice + shippingCost + tax
 
-        binding.tvItemsValue.text = String.format("₺ %.2f", totalPrice)
-        binding.tvShippingValue.text = String.format("₺ %.2f", shippingCost)
-        binding.tvTaxValue.text = String.format("₺ %.2f", tax)
-        binding.tvTotalValue.text = String.format("₺ %.2f", grandTotal)
+        binding.tvItemsValue.text = String.format("$ %.2f", totalPrice)
+        binding.tvShippingValue.text = String.format("$ %.2f", shippingCost)
+        binding.tvTaxValue.text = String.format("$ %.2f", tax)
+        binding.tvTotalValue.text = String.format("$ %.2f", grandTotal)
     }
 
     private fun showCartDialog() {
-        binding.btCart.setOnClickListener {
+        binding.buttonCart.setOnClickListener {
             val dialogFragment = CartDialogFragment()
             val fragmentManager = parentFragmentManager
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()

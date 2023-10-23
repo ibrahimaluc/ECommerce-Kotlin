@@ -18,12 +18,12 @@ class DetailViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : BaseViewModel() {
     private val _state: MutableStateFlow<DetailUiState> =
-        MutableStateFlow(DetailUiState(isLoading = false))
+        MutableStateFlow(DetailUiState(isLoading = true))
     val state: StateFlow<DetailUiState> get() = _state
 
-    fun getAllDetail(product_id: String) {
+    fun getAllDetail(productId: String) {
         job = viewModelScope.launch {
-            productRepository.getProductDetail(product_id).onEach { result ->
+            productRepository.getProductDetail(productId).onEach { result ->
                 when (result) {
                     is Resource.Success -> {
                         _state.value = DetailUiState(

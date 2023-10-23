@@ -10,7 +10,7 @@
     tools:context=".ui.screen.favorite.FavoriteFragment">
 
     <ImageView
-        android:id="@+id/iv_empty_favorite"
+        android:id="@+id/ivEmptyFavorite"
         android:layout_width="@dimen/dp_200"
         android:layout_height="@dimen/dp_200"
         android:contentDescription="@string/empty_favorite_message"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
-        android:id="@+id/tv_empty_message"
+        android:id="@+id/tvEmptyMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_36"
@@ -33,10 +33,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_empty_favorite" />
+        app:layout_constraintTop_toBottomOf="@+id/ivEmptyFavorite" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_go_home"
+        android:id="@+id/buttonFavoriteToHome"
         style="@style/CustomOrderButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,6 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_empty_message" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmptyMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

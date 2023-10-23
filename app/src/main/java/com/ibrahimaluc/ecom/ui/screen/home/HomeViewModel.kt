@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
     private val productRepository: ProductRepository,
 ) : BaseViewModel() {
     private val _state: MutableStateFlow<HomeUiState> =
-        MutableStateFlow(HomeUiState(isLoading = false))
+        MutableStateFlow(HomeUiState(isLoading = true))
     val state: StateFlow<HomeUiState> get() = _state
 
     init {

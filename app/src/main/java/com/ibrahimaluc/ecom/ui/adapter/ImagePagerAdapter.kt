@@ -60,7 +60,7 @@ class ImagePagerAdapter(
         Glide.with(context)
             .load(BuildConfig.BASE_URL_MEDIA + imageUrl)
             .apply(requestOptions)
-            .into(holder.binding.ivProductImage)
+            .into(holder.binding.ivProduct)
     }
 
     fun updateFavoriteList(favoriteList: List<FavoriteEntity>) {

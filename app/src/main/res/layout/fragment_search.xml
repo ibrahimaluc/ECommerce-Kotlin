@@ -20,7 +20,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/bt_back"
+            android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
@@ -38,14 +38,14 @@
             android:background="@drawable/search_view_background"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bt_back"
+            app:layout_constraintStart_toEndOf="@id/buttonBack"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="@string/search"
             app:searchIcon="@null"
             app:theme="@style/SearchViewStyle" />
 
         <TextView
-            android:id="@+id/tv_search_related"
+            android:id="@+id/tvSearchRelated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_24"
@@ -57,16 +57,16 @@
             app:layout_constraintTop_toBottomOf="@id/searchView" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/searchRecyclerView"
+            android:id="@+id/recyclerViewSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_24"
             android:layout_marginTop="@dimen/dp_36"
             android:layout_marginEnd="@dimen/dp_24"
+            android:visibility="@{searchControl ? View.VISIBLE : View.GONE}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toBottomOf="@id/searchView"
             tools:listitem="@layout/item_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

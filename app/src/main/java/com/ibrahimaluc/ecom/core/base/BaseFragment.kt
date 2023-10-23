@@ -26,12 +26,12 @@ abstract class BaseFragment<VM : ViewModel, DB : ViewDataBinding>(
     }
 
     private val progressBar: View? by lazy {
-        activity?.findViewById(R.id.pb_loading)
+        activity?.findViewById(R.id.pbLoading)
     }
 
     protected val navController by lazy {
         activity?.let {
-            Navigation.findNavController(it, R.id.nav_host_fragmentContainerView)
+            Navigation.findNavController(it, R.id.navHostFragmentContainer)
         }
     }
 

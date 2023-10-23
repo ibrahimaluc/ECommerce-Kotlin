@@ -18,7 +18,7 @@
         android:layout_margin="@dimen/dp_8">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_search"
+            android:id="@+id/buttonSearch"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/dp_16"
@@ -39,7 +39,7 @@
             android:layout_height="@dimen/dp_300"
             android:layout_margin="@dimen/dp_16"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/bt_search">
+            app:layout_constraintTop_toBottomOf="@id/buttonSearch">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@id/viewPagerLayout">
 
             <ImageView
-                android:id="@+id/iv_star"
+                android:id="@+id/ivStar"
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
                 android:layout_centerVertical="true"
@@ -76,43 +76,43 @@
                 android:src="@drawable/icon_star" />
 
             <TextView
-                android:id="@+id/tv_rating"
+                android:id="@+id/tvRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_4"
-                android:layout_toEndOf="@id/iv_star"
+                android:layout_toEndOf="@id/ivStar"
                 android:fontFamily="@font/semi_bold"
                 android:text="@{String.valueOf(data.point)}"
                 android:textSize="@dimen/sp_16"
                 tools:text="@string/star_point" />
 
             <TextView
-                android:id="@+id/tv_review_value"
+                android:id="@+id/tvReviewValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
-                android:layout_toEndOf="@id/tv_rating"
+                android:layout_toEndOf="@id/tvRating"
                 android:fontFamily="@font/inter_regular"
                 android:text='@{"(" + String.valueOf(data.review) + ")"}'
-                tools:text="@string/review_value"
                 android:textColor="@color/light_gray"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_12"
+                tools:text="@string/review_value" />
 
             <TextView
-                android:id="@+id/tv_review"
+                android:id="@+id/tvReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_4"
-                android:layout_toEndOf="@id/tv_review_value"
+                android:layout_toEndOf="@id/tvReviewValue"
                 android:fontFamily="@font/inter_regular"
                 android:text="@string/reviews"
                 android:textSize="@dimen/sp_12" />
 
             <TextView
-                android:id="@+id/tv_seller"
+                android:id="@+id/tvSeller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -125,7 +125,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_product_name"
+            android:id="@+id/tvProductName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
@@ -140,28 +140,28 @@
             tools:text="@string/product_name" />
 
         <TextView
-            android:id="@+id/tv_product_price"
+            android:id="@+id/tvProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_1"
             android:fontFamily="@font/inter_semi_bold"
-            android:text='@{"₺" + String.format("%.2f",data.price)}'
+            android:text='@{"$" + String.format("%.2f",data.price)}'
             android:textSize="@dimen/sp_16"
-            app:layout_constraintStart_toStartOf="@id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            app:layout_constraintStart_toStartOf="@id/tvProductName"
+            app:layout_constraintTop_toBottomOf="@id/tvProductName"
             tools:text="@string/product_price" />
 
 
         <TextView
-            android:id="@+id/tv_select_size"
+            android:id="@+id/tvSelectSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
             android:fontFamily="@font/inter_regular"
             android:text="@string/select_size"
             android:textSize="@dimen/sp_16"
-            app:layout_constraintStart_toStartOf="@id/tv_product_price"
-            app:layout_constraintTop_toBottomOf="@id/tv_product_price" />
+            app:layout_constraintStart_toStartOf="@id/tvProductPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvProductPrice" />
 
         <RelativeLayout
             android:id="@+id/buttonLayout"
@@ -169,10 +169,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_8"
-            app:layout_constraintTop_toBottomOf="@id/tv_select_size">
+            app:layout_constraintTop_toBottomOf="@id/tvSelectSize">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_size_s"
+                android:id="@+id/buttonSizeS"
                 style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
                 android:state_selected="false"
@@ -180,38 +180,38 @@
                 android:textSize="@dimen/sp_16" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_size_m"
+                android:id="@+id/buttonSizeM"
                 style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
-                android:layout_toEndOf="@id/btn_size_s"
+                android:layout_toEndOf="@id/buttonSizeS"
                 android:state_selected="false"
                 android:text="@string/size_m"
                 android:textSize="@dimen/sp_16" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_size_l"
+                android:id="@+id/buttonSizeL"
                 style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
-                android:layout_toEndOf="@id/btn_size_m"
+                android:layout_toEndOf="@id/buttonSizeM"
                 android:state_selected="false"
                 android:text="@string/size_l"
                 android:textSize="@dimen/sp_16" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_size_xl"
+                android:id="@+id/buttonSizeXL"
                 style="@style/CustomButtonStyle"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_8"
-                android:layout_toEndOf="@id/btn_size_l"
+                android:layout_toEndOf="@id/buttonSizeL"
                 android:state_selected="false"
                 android:text="@string/size_xl"
                 android:textSize="@dimen/sp_16" />
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_add_to_cart"
+            android:id="@+id/buttonAddToCart"
             style="@style/CustomOrderButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -221,7 +221,5 @@
             android:text="@string/add_to_cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonLayout" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

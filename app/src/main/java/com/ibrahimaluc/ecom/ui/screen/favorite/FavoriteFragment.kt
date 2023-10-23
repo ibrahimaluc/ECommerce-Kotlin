@@ -25,10 +25,11 @@ class FavoriteFragment : BaseFragment<FavoriteViewModel, FragmentFavoriteBinding
     override fun onCreateViewInvoke() {
         setupToolbar()
         loadFavoriteProducts()
+        showEmptyListView()
     }
 
     private fun setupToolbar() {
-        val toolbar = binding.toolbar
+        val toolbar = binding.toolBar
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener {
@@ -51,7 +52,7 @@ class FavoriteFragment : BaseFragment<FavoriteViewModel, FragmentFavoriteBinding
 
     private fun showEmptyListView() {
         binding.visibilityComponent = false
-        val btnGoHome = view?.findViewById<AppCompatButton>(R.id.btn_go_home)
+        val btnGoHome = view?.findViewById<AppCompatButton>(R.id.buttonFavoriteToHome)
         btnGoHome?.setOnClickListener {
             val action = FavoriteFragmentDirections.actionFavoriteFragmentToHomeFragment()
             findNavController().navigate(action)

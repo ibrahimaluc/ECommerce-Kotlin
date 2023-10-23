@@ -1,6 +1,7 @@
 package com.ibrahimaluc.ecom.ui.screen.search
 
 
+import android.annotation.SuppressLint
 import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,41 +32,42 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         backButton()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onQueryTextSubmit(searchQuery: String?): Boolean {
         if (!searchQuery.isNullOrBlank()) {
             viewModel.getSearchResults(searchQuery)
             binding.searchControl = true
-            hideKeyboard()
         }
+        searchAdapter?.notifyDataSetChanged()
+        hideKeyboard()
         return true
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onQueryTextChange(newQuery: String?): Boolean {
         if (!newQuery.isNullOrBlank()) {
             viewModel.getSearchResults(newQuery)
             binding.searchControl = true
         } else {
             searchList.clear()
-            searchAdapter?.searchList = emptyList()
-            searchAdapter?.notifyDataSetChanged()
             binding.searchControl = false
             hideKeyboard()
         }
+        searchAdapter?.notifyDataSetChanged()
         return true
     }
 
     private fun handleSearchViewState(uiState: SearchUiState) {
         setProgressStatus(uiState.isLoading)
         uiState.searchList?.let {
-            searchList.clear()
             searchAdapter?.searchList = it
         }
     }
 
     private fun searchAdapter() = with(binding) {
         searchAdapter = SearchAdapter(::navigateToDetail)
-        searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        searchRecyclerView.adapter = searchAdapter
+        recyclerViewSearch.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewSearch.adapter = searchAdapter
     }
 
     private fun navigateToDetail(id: Int) {
@@ -74,7 +76,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
     }
 
     private fun backButton() {
-        binding.btBack.setOnClickListener {
+        binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }

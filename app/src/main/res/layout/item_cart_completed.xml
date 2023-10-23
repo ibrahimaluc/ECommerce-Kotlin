@@ -18,7 +18,7 @@
             tools:context=".ui.screen.cart.CartFragment">
 
             <ImageView
-                android:id="@+id/iv_cart_completed"
+                android:id="@+id/ivCartCompleted"
                 android:layout_width="@dimen/dp_200"
                 android:layout_height="@dimen/dp_200"
                 android:layout_marginTop="36dp"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_cart_completed_message"
+                android:id="@+id/tvCartCompletedMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_36"
@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_cart_completed" />
+                app:layout_constraintTop_toBottomOf="@+id/ivCartCompleted" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

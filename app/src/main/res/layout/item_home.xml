@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/iv_product_image"
+                android:id="@+id/ivProduct"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_200"
                 android:contentDescription="@string/product_image"
@@ -43,7 +43,7 @@
                 android:background="@drawable/favorite_background">
 
                 <ImageButton
-                    android:id="@+id/ib_like"
+                    android:id="@+id/ibLike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -66,7 +66,7 @@
 
 
                 <ImageView
-                    android:id="@+id/iv_star"
+                    android:id="@+id/ivStar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -76,7 +76,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_rating"
+                    android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -84,7 +84,7 @@
                     android:layout_marginTop="@dimen/dp_2"
                     android:layout_marginEnd="@dimen/dp_2"
                     android:layout_marginBottom="@dimen/dp_2"
-                    android:layout_toEndOf="@id/iv_star"
+                    android:layout_toEndOf="@id/ivStar"
                     android:fontFamily="@font/semi_bold"
                     android:text="@{String.valueOf(data.point)}"
                     android:textSize="@dimen/sp_8" />
@@ -93,10 +93,10 @@
 
 
             <TextView
-                android:id="@+id/tv_product_name"
+                android:id="@+id/tvProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_product_image"
+                android:layout_below="@id/ivProduct"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_2"
                 android:ellipsize="end"
@@ -110,11 +110,11 @@
                 android:id="@+id/tv_product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_product_name"
+                android:layout_below="@id/tvProductName"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_2"
                 android:fontFamily="@font/semi_bold"
-                android:text='@{"₺" + String.format("%.2f", data.price)}'
+                android:text='@{"$" + String.format("%.2f", data.price)}'
                 android:textSize="@dimen/sp_12"
                 tools:text="@string/product_price" />
 
