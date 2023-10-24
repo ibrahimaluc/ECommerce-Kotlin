@@ -4,8 +4,8 @@
 technologies, libraries and tools as listed below.</b>
 <br><br>
 With this application, users can view e-commerce products by sending a request to the backend I
-wrote. They can access product details and search for products. He can add and remove these products
-to his favorite list or cart. Can purchase the products in the cart.
+wrote. They can access product details and search for products. They can add and remove these products
+to their favorite list or cart. Can purchase the products in the cart.
 <br><br>
 
 ## Libraries & Tools Client 🛠️
