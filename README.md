@@ -33,10 +33,9 @@ to their favorite list or cart. Can purchase the products in the cart.
     - [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/#)
 - [Django-Yasg](https://drf-yasg.readthedocs.io/en/stable/)
   <ul>
-  <a href="ecom.api.ibrahimaluc.com">Swagger UI</a>
+  <li><a href="http://ecom.api.ibrahimaluc.com">Swagger UI</a></li>
   <li><b>Username:</b> useranon</li>
   <li><b>Password:</b> 123456.</li>
-
 </ul>
 
 ## Screenrecord 📱
