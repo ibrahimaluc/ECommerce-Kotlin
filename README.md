@@ -4,7 +4,8 @@
 technologies, libraries and tools as listed below.</b>
 <br><br>
 With this application, users can view e-commerce products by sending a request to the backend I
-wrote. They can access product details and search for products. They can add and remove these products
+wrote. They can access product details and search for products. They can add and remove these
+products
 to their favorite list or cart. Can purchase the products in the cart.
 <br><br>
 
@@ -25,7 +26,6 @@ to their favorite list or cart. Can purchase the products in the cart.
 - [Material Design](https://material.io/develop/android/docs/getting-started)
 - [Chucker](https://github.com/ChuckerTeam/chucker)
 
-
 ## Libraries & Tools Backend 🛠️
 
 - [Django](https://www.djangoproject.com/)
@@ -33,12 +33,17 @@ to their favorite list or cart. Can purchase the products in the cart.
     - [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/#)
 - [Django-Yasg](https://drf-yasg.readthedocs.io/en/stable/)
 
+  <b><a href="ecom.api.ibrahimaluc.com">Swagger UI</a></b>
+  <ul>
+  <li><b>Username:</b> useranon</li>
+  <li><b>Password:</b> 123456.</li>
+
+</ul>
+
 ## Screenrecord 📱
 
 <p align="left">
 https://github.com/ibrahimaluc/ECommerce-Kotlin/assets/36038586/c8dde482-88a8-4dba-b13f-54b9d82fc8bb
-
-
 
 ## Architecture
 
