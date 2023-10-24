@@ -60,6 +60,7 @@ class ImagePagerAdapter(
         Glide.with(context)
             .load(BuildConfig.BASE_URL_MEDIA + imageUrl)
             .apply(requestOptions)
+            .fitCenter()
             .into(holder.binding.ivProduct)
     }
 
