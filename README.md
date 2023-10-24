@@ -33,8 +33,11 @@ to his favorite list or cart. Can purchase the products in the cart.
     - [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/#)
 -[Django Yasg](https://drf-yasg.readthedocs.io/en/stable/)
 
+## Screenrecord 📱
 
-      
+<p align="left">
+
+<img align="left" src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/ecom_app.mp4" width="250" height="530" />
 
 ## Architecture
 
