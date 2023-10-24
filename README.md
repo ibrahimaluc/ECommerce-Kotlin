@@ -38,11 +38,11 @@ to his favorite list or cart. Can purchase the products in the cart.
 
 <p align="left">
 
-<img align="left" src="https://github.com/ibrahimaluc/filmshaker/blob/main/readmefiles/ecom_app.mp4" width="250" height="530" />
+<img align="left" src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/ecom_app.mp4" width="250" height="530" />
 
 
 ## Architecture
 
 <p align="left">
-  <img  src="https://github.com/ibrahimaluc/filmshaker/blob/main/readmefiles/mvvm_flow_uistate.png" alt="Architecture" width="800" height="400" />
+  <img  src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/mvvm_flow_uistate.png" alt="Architecture" width="800" height="400" />
 </p>
