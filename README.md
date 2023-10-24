@@ -37,7 +37,7 @@ to his favorite list or cart. Can purchase the products in the cart.
 
 <p align="left">
 
-<img align="left" src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/ecom_app.mp4" width="250" height="530" />
+<img align="left" src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/ecom_app.mp4"/>
 
 ## Architecture
 
