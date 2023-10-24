@@ -1,5 +1,6 @@
 package com.ibrahimaluc.ecom.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -64,6 +65,7 @@ class ImagePagerAdapter(
             .into(holder.binding.ivProduct)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateFavoriteList(favoriteList: List<FavoriteEntity>) {
         favoriteProductList = favoriteList
         notifyDataSetChanged()

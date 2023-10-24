@@ -57,10 +57,12 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>(
         return true
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun handleSearchViewState(uiState: SearchUiState) {
         setProgressStatus(uiState.isLoading)
         uiState.searchList?.let {
             searchAdapter?.searchList = it
+            searchAdapter?.notifyDataSetChanged()
         }
     }
 

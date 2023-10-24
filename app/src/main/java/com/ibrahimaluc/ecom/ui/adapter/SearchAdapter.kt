@@ -34,9 +34,11 @@ class SearchAdapter(private val clickControl: (Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.binding.data = searchList[position]
-        holder.binding.productCard.setOnClickListener {
-            searchList[position].id?.let { productId -> clickControl(productId) }
+        if (position in searchList.indices) {
+            holder.binding.data = searchList[position]
+            holder.binding.productCard.setOnClickListener {
+                searchList[position].id?.let { productId -> clickControl(productId) }
+            }
         }
     }
 
