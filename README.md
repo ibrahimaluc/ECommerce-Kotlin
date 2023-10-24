@@ -36,7 +36,7 @@ to his favorite list or cart. Can purchase the products in the cart.
 ## Screenrecord 📱
 
 <p align="left">
-<img align="left" src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/ecom_app.mp4"/>
+<img align="left" src="https://github.com/ibrahimaluc/ECommerce-Kotlin/blob/master/readmefiles/ecom.mp4"/>
 
 ## Architecture
 
