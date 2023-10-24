@@ -115,6 +115,7 @@ dependencies {
     //CircleIndicator
     implementation "me.relex:circleindicator:$versions.circleindicator"
 
+    //Chucker
     debugImplementation "com.github.chuckerteam.chucker:library:$versions.chuck"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$versions.chuck"
 
