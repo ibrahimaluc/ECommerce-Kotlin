@@ -35,7 +35,7 @@ to their favorite list or cart. Can purchase the products in the cart.
   <ul>
   <li><a href="http://ecom.api.ibrahimaluc.com">Swagger UI</a></li>
   <li><b>Username:</b> useranon</li>
-  <li><b>Password:</b> 123456.</li>
+  <li><b>Password:</b> 123456.,</li>
 </ul>
 
 ## Screenrecord 📱
